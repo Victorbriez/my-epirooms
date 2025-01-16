@@ -22,7 +22,7 @@ export default function Page() {
             onFloorChange={setCurrentFloor}
           />
 
-          <InfoPanel />
+          <InfoPanel currentFloor={currentFloor} />
         </div>
       </div>
     </div>
