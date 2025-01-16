@@ -1,20 +1,20 @@
 import { RawActivity } from "@/types/RawActivity";
 
-export class ActivityEntity {
-  readonly start: Date;
+export class Activity {
+  readonly capacity?: number;
   readonly end: Date;
-  readonly title: string;
   readonly moduleCode?: string;
   readonly roomCode: string;
-  readonly capacity?: number;
+  readonly start: Date;
+  readonly title: string;
 
   constructor(data: RawActivity) {
-    this.start = new Date(data.start);
+    this.capacity = data.room?.capacity;
     this.end = new Date(data.end);
-    this.title = data.activityTitle ?? data.title ?? "N/A";
     this.moduleCode = data.moduleCode;
     this.roomCode = data.room?.code ?? "N/A";
-    this.capacity = data.room?.capacity;
+    this.start = new Date(data.start);
+    this.title = data.activityTitle ?? data.title ?? "N/A";
   }
 
   getDurationInMinutes(): number {

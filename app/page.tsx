@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FloorSelector } from "@/components/floor-selector";
 import { InfoPanel } from "@/components/info-panel";
+import { Separator } from "@/components/ui/separator";
 
 export default function Page() {
   const [currentFloor, setCurrentFloor] = useState(0);
@@ -21,7 +22,7 @@ export default function Page() {
             currentFloor={currentFloor}
             onFloorChange={setCurrentFloor}
           />
-
+          <Separator />
           <InfoPanel currentFloor={currentFloor} />
         </div>
       </div>

@@ -1,16 +1,16 @@
 export interface Activity {
-  id: number;
-  title: string;
-  start: Date;
-  end: Date;
   capacity?: number;
+  end: Date;
+  id: number;
   moduleCode?: string;
   roomCode?: string;
+  start: Date;
+  title: string;
 }
 
 export type ActivityStatus =
-  | "upcoming"
-  | "starting-soon"
-  | "ongoing"
+  | "ended"
   | "ending-soon"
-  | "ended";
+  | "ongoing"
+  | "starting-soon"
+  | "upcoming";

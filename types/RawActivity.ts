@@ -1,15 +1,11 @@
-export interface Room {
-  code?: string;
-  type: string;
-  capacity: number;
-}
+import { Room } from "./Room";
 
 export interface RawActivity {
-  start: string;
+  activityTitle?: string;
   end: string;
   moduleCode?: string;
-  title?: string;
-  activityTitle?: string;
   moduleTitle?: string;
   room?: Room;
+  start: string;
+  title?: string;
 }

@@ -2,8 +2,8 @@
 
 import { RawActivity } from "@/types/RawActivity";
 
-export async function getPlanningAction(date: string): Promise<RawActivity[]> {
-  const url = `https://lille-epirooms.epitest.eu/?date=${date}`;
+export async function fetchPlanningData(date: string): Promise<RawActivity[]> {
+  const url = `https://lille-epirooms.epitest.eu/?date=2025-01-17`;
 
   try {
     const response = await fetch(url, {

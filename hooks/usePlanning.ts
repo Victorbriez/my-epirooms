@@ -1,19 +1,19 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
-import { getPlanningAction } from "@/app/actions/getPlanningAction";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { fetchPlanningData } from "@/app/actions/getPlanningAction";
+import { Activity } from "@/models/Activity";
 import { RawActivity } from "@/types/RawActivity";
-import { ActivityEntity } from "@/models/ActivityEntity";
 
 export function usePlanning() {
-  const [activities, setActivities] = useState<ActivityEntity[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [activities, setActivities] = useState<Activity[]>([]);
   const [error, setError] = useState<Error | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const processActivities = useMemo(
     () =>
-      (rawData: RawActivity[]): ActivityEntity[] => {
+      (rawData: RawActivity[]): Activity[] => {
         const now = new Date();
         return rawData
-          .map((item) => new ActivityEntity(item))
+          .map((item) => new Activity(item))
           .filter((activity) => now <= activity.end)
           .sort((a, b) => a.start.getTime() - b.start.getTime());
       },
@@ -23,9 +23,10 @@ export function usePlanning() {
   const fetchActivities = useCallback(async () => {
     setLoading(true);
     setError(null);
+
     try {
       const currentDate = new Date().toISOString().split("T")[0];
-      const rawData = await getPlanningAction(currentDate);
+      const rawData = await fetchPlanningData(currentDate);
       setActivities(processActivities(rawData));
     } catch (e) {
       setError(e instanceof Error ? e : new Error("An unknown error occurred"));
@@ -38,5 +39,10 @@ export function usePlanning() {
     fetchActivities();
   }, [fetchActivities]);
 
-  return { activities, loading, error, refresh: fetchActivities };
+  return {
+    activities,
+    error,
+    loading,
+    refresh: fetchActivities,
+  };
 }
