@@ -1,27 +1,33 @@
-import { RawActivity } from "@/types/RawActivity";
+import { ActivityInterface } from "@/types/ActivityInterface";
 
 export class Activity {
-  readonly capacity?: number;
+  readonly id: number;
   readonly end: Date;
-  readonly moduleCode?: string;
-  readonly roomCode: string;
   readonly start: Date;
   readonly title: string;
+  readonly roomCode: string;
+  readonly seats?: number;
 
-  constructor(data: RawActivity) {
-    this.capacity = data.room?.capacity;
-    this.end = new Date(data.end);
-    this.moduleCode = data.moduleCode;
-    this.roomCode = data.room?.code ?? "N/A";
-    this.start = new Date(data.start);
-    this.title = data.activityTitle ?? data.title ?? "N/A";
+  constructor(props: ActivityInterface) {
+    this.id = props.id;
+    this.end = new Date(props.end);
+    this.start = new Date(props.start);
+    this.title = props.acti_title ?? props.title ?? "N/A";
+    this.roomCode = props.room?.code ?? props.location ?? "N/A";
+    this.seats = props.room?.seats;
   }
 
   getDurationInMinutes(): number {
-    return Math.round((this.end.getTime() - this.start.getTime()) / 60000);
+    return (this.end.getTime() - this.start.getTime()) / 60000;
   }
 
-  isOngoing(currentDate: Date = new Date()): boolean {
-    return currentDate >= this.start && currentDate <= this.end;
+  isOngoing(date: Date = new Date()): boolean {
+    return date >= this.start && date <= this.end;
+  }
+
+  toString(): string {
+    return `Activité: ${this.title} (ID: ${this.id}) - Salle: ${
+      this.roomCode
+    } - Début: ${this.start.toLocaleString()} - Fin: ${this.end.toLocaleString()}`;
   }
 }

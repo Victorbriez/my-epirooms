@@ -1,18 +1,18 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { fetchPlanningData } from "@/app/actions/getPlanningAction";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { ActivityInterface } from "@/types/ActivityInterface";
 import { Activity } from "@/models/Activity";
-import { RawActivity } from "@/types/RawActivity";
+import { fetchPlanningData } from "@/app/actions/fetchPlanningData";
 
 export function usePlanning() {
-  const [activities, setActivities] = useState<Activity[]>([]);
+  const [eventList, setEventList] = useState<Activity[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [loading, setLoading] = useState(true);
 
   const processActivities = useMemo(
     () =>
-      (rawData: RawActivity[]): Activity[] => {
+      (data: ActivityInterface[]): Activity[] => {
         const now = new Date();
-        return rawData
+        return data
           .map((item) => new Activity(item))
           .filter((activity) => now <= activity.end)
           .sort((a, b) => a.start.getTime() - b.start.getTime());
@@ -21,17 +21,17 @@ export function usePlanning() {
   );
 
   const fetchActivities = useCallback(async () => {
-    setLoading(true);
+    setIsLoading(true);
     setError(null);
-
     try {
       const currentDate = new Date().toISOString().split("T")[0];
-      const rawData = await fetchPlanningData(currentDate);
-      setActivities(processActivities(rawData));
+      const data = await fetchPlanningData(currentDate);
+      const processedData = processActivities(data);
+      setEventList(processedData);
     } catch (e) {
       setError(e instanceof Error ? e : new Error("An unknown error occurred"));
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }, [processActivities]);
 
@@ -39,10 +39,5 @@ export function usePlanning() {
     fetchActivities();
   }, [fetchActivities]);
 
-  return {
-    activities,
-    error,
-    loading,
-    refresh: fetchActivities,
-  };
+  return { eventList, isLoading, error, refresh: fetchActivities };
 }

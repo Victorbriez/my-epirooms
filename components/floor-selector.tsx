@@ -4,15 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ModeToggle } from "./mode-toggle";
 import { cn } from "@/lib/utils";
+import { RefreshCcw } from "lucide-react";
 
 interface FloorSelectorProps {
   currentFloor: number;
   onFloorChange: (floor: number) => void;
+  refresh: () => void;
 }
 
 export function FloorSelector({
   currentFloor,
   onFloorChange,
+  refresh,
 }: FloorSelectorProps) {
   const floors = [
     { id: 0, label: "RDC" },
@@ -36,6 +39,10 @@ export function FloorSelector({
         </Button>
       ))}
       <ModeToggle />
+      <Button variant="outline" size="sm" onClick={refresh}>
+        <RefreshCcw className="h-4 w-4 mr-2" />
+        Retry
+      </Button>
     </Card>
   );
 }

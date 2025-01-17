@@ -1,41 +1,51 @@
 "use client";
 
+import { useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { RoomStatusBadge } from "./room-status-badge";
-import locations from "@/location.json";
-import { usePlanning } from "@/hooks/usePlanning";
-import { useMemo } from "react";
-import { getRoomAvailability } from "@/utils/roomAvailability";
-import { format } from "date-fns";
-import { fr } from "date-fns/locale";
+import { Activity } from "@/models/Activity";
+import { LocationInterface } from "@/types/LocationInterface";
 
 interface ActivityPanelProps {
   currentFloor: number;
+  activities: Activity[];
+  isLoading: boolean;
+  error: Error | null;
 }
 
-export function ActivityPanel({ currentFloor }: ActivityPanelProps) {
-  const { activities, loading } = usePlanning();
-
-  const filteredRooms = useMemo(() => {
-    return locations.filter(
-      (location) => location.floor === currentFloor.toString()
-    );
-  }, [currentFloor]);
-
+export function ActivityPanel({
+  currentFloor,
+  activities,
+  isLoading,
+  error,
+}: ActivityPanelProps) {
   const roomsWithAvailability = useMemo(() => {
-    const now = new Date();
-    return filteredRooms.map((room) => ({
-      ...room,
-      availability: getRoomAvailability(room, activities, now),
-    }));
-  }, [filteredRooms, activities]);
+    return roomList
+      .filter((room) => room.floor === currentFloor.toString())
+      .map((room) => {
+        const events = getRoomEvents(room);
+        const now = new Date();
+        const currentActivity = events.find(
+          (e) => now >= e.start && now < e.end
+        );
+        const nextActivity = events.find((e) => now < e.start);
+        return {
+          ...room,
+          availability: {
+            currentActivity,
+            nextActivity,
+          },
+        };
+      });
+  }, [currentFloor, roomList, getRoomEvents]);
 
-  if (loading) {
+  if (roomsWithAvailability.length === 0) {
     return (
       <div className="h-full">
         <div className="flex items-center justify-center h-full">
-          <p>Chargement des données...</p>
+          <p className="text-muted-foreground">
+            Aucune salle disponible à cet étage.
+          </p>
         </div>
       </div>
     );
@@ -51,7 +61,6 @@ export function ActivityPanel({ currentFloor }: ActivityPanelProps) {
                 <CardTitle className="text-lg font-medium">
                   {room.title}
                 </CardTitle>
-                <RoomStatusBadge status={room.availability.status} />
               </div>
             </CardHeader>
             <CardContent className="pt-0 px-4 pb-4 space-y-2">
@@ -63,9 +72,10 @@ export function ActivityPanel({ currentFloor }: ActivityPanelProps) {
                   <p>{room.availability.currentActivity.title}</p>
                   <p className="text-muted-foreground">
                     Jusqu&apos;à{" "}
-                    {format(room.availability.currentActivity.end, "HH:mm", {
-                      locale: fr,
-                    })}
+                    {room.availability.currentActivity.end.toLocaleTimeString(
+                      "fr-FR",
+                      { hour: "2-digit", minute: "2-digit" }
+                    )}
                   </p>
                 </div>
               )}
@@ -76,13 +86,15 @@ export function ActivityPanel({ currentFloor }: ActivityPanelProps) {
                   <p>{room.availability.nextActivity.title}</p>
                   <p className="text-muted-foreground">
                     De{" "}
-                    {format(room.availability.nextActivity.start, "HH:mm", {
-                      locale: fr,
-                    })}{" "}
+                    {room.availability.nextActivity.start.toLocaleTimeString(
+                      "fr-FR",
+                      { hour: "2-digit", minute: "2-digit" }
+                    )}{" "}
                     à{" "}
-                    {format(room.availability.nextActivity.end, "HH:mm", {
-                      locale: fr,
-                    })}
+                    {room.availability.nextActivity.end.toLocaleTimeString(
+                      "fr-FR",
+                      { hour: "2-digit", minute: "2-digit" }
+                    )}
                   </p>
                 </div>
               )}

@@ -1,6 +1,6 @@
 "use server";
 
-import { RawActivity } from "@/types/RawActivity";
+import { RawActivity } from "@/types/ActivityInterface";
 
 export async function fetchPlanningData(date: string): Promise<RawActivity[]> {
   const url = `https://lille-epirooms.epitest.eu/?date=${date}`;
