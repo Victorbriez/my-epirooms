@@ -10,11 +10,11 @@ import { getRoomAvailability } from "@/utils/roomAvailability";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 
-interface InfoPanelProps {
+interface ActivityPanelProps {
   currentFloor: number;
 }
 
-export function InfoPanel({ currentFloor }: InfoPanelProps) {
+export function ActivityPanel({ currentFloor }: ActivityPanelProps) {
   const { activities, loading } = usePlanning();
 
   const filteredRooms = useMemo(() => {
@@ -33,17 +33,17 @@ export function InfoPanel({ currentFloor }: InfoPanelProps) {
 
   if (loading) {
     return (
-      <Card>
-        <CardContent className="p-4">
+      <div className="h-full">
+        <div className="flex items-center justify-center h-full">
           <p>Chargement des données...</p>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     );
   }
 
   return (
     <ScrollArea className="h-full rounded-lg">
-      <div className="space-y-4 pb-4 px-4">
+      <div className="space-y-4 px-4">
         {roomsWithAvailability.map((room) => (
           <Card key={room.key}>
             <CardHeader className="p-4">
