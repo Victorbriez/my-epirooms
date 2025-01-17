@@ -36,6 +36,7 @@ export default function Page() {
             activities={floorActivities}
             isLoading={isLoading}
             error={error}
+            refresh={refresh}
           />
           <FloorSelector
             currentFloor={currentFloor}
@@ -48,7 +49,11 @@ export default function Page() {
           <Separator orientation="vertical" className="h-full" />
         </div>
         <div className="hidden lg:block lg:col-span-7 bg-background rounded-lg shadow-sm overflow-hidden relative">
-          <FloorPlan currentFloor={currentFloor} isLoading={isLoading} />
+          <FloorPlan
+            currentFloor={currentFloor}
+            isLoading={isLoading}
+            error={error}
+          />
         </div>
       </div>
     </div>

@@ -153,7 +153,6 @@ export default function FloorPlanSVG2({ Color }: FloorPlanProps) {
             height="141.96"
             fill="url(#mx-pattern-hatch-1-636263-0)"
           />
-          {/* Walls - All rect elements with original fill="#f5f5f5" */}
           <g fill={Color}>
             <rect x="94.99" y="355.36" width="4.01" height="20.64" />
             <rect x="681" y="610" width="4.01" height="154" />
