@@ -5,17 +5,20 @@ import { Card } from "@/components/ui/card";
 import { ModeToggle } from "./mode-toggle";
 import { cn } from "@/lib/utils";
 import { RefreshCcw } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 interface FloorSelectorProps {
   currentFloor: number;
   onFloorChange: (floor: number) => void;
   refresh: () => void;
+  isLoading: boolean;
 }
 
 export function FloorSelector({
   currentFloor,
   onFloorChange,
   refresh,
+  isLoading,
 }: FloorSelectorProps) {
   const floors = [
     { id: 0, label: "RDC" },
@@ -34,14 +37,20 @@ export function FloorSelector({
             currentFloor === floor.id && "bg-primary text-primary-foreground"
           )}
           onClick={() => onFloorChange(floor.id)}
+          disabled={isLoading}
         >
           {floor.label}
         </Button>
       ))}
+      <Separator orientation="vertical" />
       <ModeToggle />
-      <Button variant="outline" size="sm" onClick={refresh}>
-        <RefreshCcw className="h-4 w-4 mr-2" />
-        Retry
+      <Button
+        variant="outline"
+        onClick={refresh}
+        size="icon"
+        disabled={isLoading}
+      >
+        <RefreshCcw />
       </Button>
     </Card>
   );

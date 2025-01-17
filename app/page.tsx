@@ -4,20 +4,27 @@ import { useState, useMemo } from "react";
 import { FloorSelector } from "@/components/floor-selector";
 import { ActivityPanel } from "@/components/activity-panel";
 import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
 import { usePlanning } from "@/hooks/usePlanning";
 import { LocationInterface } from "@/types/LocationInterface";
 import Location from "@/location.json";
 import { Header } from "@/components/Header";
-
-import { floorPlans } from "@/utils/floor-plans";
-import { getRoomEvents } from "@/utils/room-events";
+import { FloorPlan } from "@/components/floor-plan";
+import { Activity } from "@/models/Activity";
 
 export default function Page() {
   const [currentFloor, setCurrentFloor] = useState(0);
-
   const { eventList, isLoading, error, refresh } = usePlanning();
   const roomList = useMemo(() => Location as LocationInterface[], []);
+
+  const currentFloorRooms = useMemo(
+    () => roomList.filter((room) => room.floor === currentFloor.toString()),
+    [roomList, currentFloor]
+  );
+
+  const floorActivities = useMemo(
+    () => getFloorActivity(currentFloorRooms, eventList),
+    [currentFloorRooms, eventList]
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -26,8 +33,7 @@ export default function Page() {
           <Header />
           <Separator className="w-full" />
           <ActivityPanel
-            currentFloor={currentFloor}
-            activities={getRoomEvents(roomList, eventList)}
+            activities={floorActivities}
             isLoading={isLoading}
             error={error}
           />
@@ -35,20 +41,39 @@ export default function Page() {
             currentFloor={currentFloor}
             onFloorChange={setCurrentFloor}
             refresh={refresh}
+            isLoading={isLoading}
           />
         </div>
-        <div className="hidden lg:block lg:col-span-8 bg-background rounded-lg shadow-sm overflow-hidden relative">
-          <div className="w-full h-full flex items-center justify-center">
-            <Image
-              src={floorPlans[currentFloor].src || "/placeholder.svg"}
-              alt={floorPlans[currentFloor].alt}
-              width={800}
-              height={600}
-              className="w-full h-full object-contain"
-            />
-          </div>
+        <div className="hidden lg:flex items-center">
+          <Separator orientation="vertical" className="h-full" />
+        </div>
+        <div className="hidden lg:block lg:col-span-7 bg-background rounded-lg shadow-sm overflow-hidden relative">
+          <FloorPlan currentFloor={currentFloor} isLoading={isLoading} />
         </div>
       </div>
     </div>
   );
+}
+
+function getFloorActivity(
+  roomList: LocationInterface[],
+  activities: Activity[]
+): (LocationInterface & {
+  availability: { currentActivity?: Activity; nextActivity?: Activity };
+})[] {
+  const now = new Date();
+  return roomList.map((room) => {
+    const events = activities.filter(
+      (activity) => activity.roomCode === room.key
+    );
+    const currentActivity = events.find((e) => now >= e.start && now < e.end);
+    const nextActivity = events.find((e) => now < e.start);
+    return {
+      ...room,
+      availability: {
+        currentActivity,
+        nextActivity,
+      },
+    };
+  });
 }
