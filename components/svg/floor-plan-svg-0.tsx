@@ -3,9 +3,14 @@
 interface FloorPlanProps {
   Color: string;
   getRoomColor: (roomKey: string) => string;
+  onRoomClick?: (roomKey: string) => void;
 }
 
-export default function FloorPlanSVG0({ Color, getRoomColor }: FloorPlanProps) {
+export default function FloorPlanSVG0({
+  Color,
+  getRoomColor,
+  onRoomClick,
+}: FloorPlanProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +52,14 @@ export default function FloorPlanSVG0({ Color, getRoomColor }: FloorPlanProps) {
               fill="grey"
             />
           </g>
-          <g id="B-02-Elliot-Alderson">
+
+          <g
+            id="B-02-Elliot-Alderson"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/B-02-Elliot-Alderson")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="6"
               y="3.48"
@@ -58,7 +70,12 @@ export default function FloorPlanSVG0({ Color, getRoomColor }: FloorPlanProps) {
               )}
             />
           </g>
-          <g id="S-01-Stark">
+
+          <g
+            id="S-01-Stark"
+            onClick={() => onRoomClick?.("FR/LIL/Hopital-Militaire/S-01-Stark")}
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="219"
               y="158.48"
@@ -67,7 +84,14 @@ export default function FloorPlanSVG0({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-01-Stark")}
             />
           </g>
-          <g id="S-02-Pru-Ha">
+
+          <g
+            id="S-02-Pru-Ha"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-02-Pru-Ha")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="218.55"
               y="388"
@@ -83,7 +107,14 @@ export default function FloorPlanSVG0({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-02-Pru-Ha")}
             />
           </g>
-          <g id="S-03-Mei-Hatsume">
+
+          <g
+            id="S-03-Mei-Hatsume"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-03-Mei-Hatsume")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="410"
               y="421"
@@ -92,9 +123,38 @@ export default function FloorPlanSVG0({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-03-Mei-Hatsume")}
             />
           </g>
+
+          <g
+            id="S-26-Rdireveltn"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-26-Rdireveltn")
+            }
+            style={{ cursor: "pointer" }}
+          >
+            <rect
+              x="800"
+              y="300"
+              width="120"
+              height="160"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-26-Rdireveltn")}
+            />
+            <path
+              d="M 820 460 L 920 460 L 920 470 L 820 470 L 820 460 Z"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-26-Rdireveltn")}
+            />
+            <rect
+              x="850"
+              y="250"
+              width="80"
+              height="100"
+              transform="rotate(10,890,300)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-26-Rdireveltn")}
+            />
+          </g>
           <g
             id="room-labels"
-            style={{ fontFamily: "Helvetica", fontSize: "16px" }}
+            className="text-[16px]"
+            style={{ fontFamily: "Helvetica", cursor: "pointer" }}
           >
             <text x="305" y="60" textAnchor="middle" fill={Color}>
               Bulma

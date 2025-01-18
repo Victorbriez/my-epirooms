@@ -15,9 +15,10 @@ interface FloorPlanProps {
   activities: (LocationInterface & {
     availability: {
       currentActivity?: Activity;
-      nextActivity?: Activity;
+      nextActivity?: Activity[];
     };
   })[];
+  onRoomClick?: (roomKey: string) => void;
 }
 
 export function FloorPlan({
@@ -25,6 +26,7 @@ export function FloorPlan({
   isLoading,
   error,
   activities,
+  onRoomClick,
 }: FloorPlanProps) {
   const { theme } = useTheme();
   const lineColor = theme === "dark" ? "#ffffff" : "#1a1a1a";
@@ -42,17 +44,18 @@ export function FloorPlan({
     if (!room) return "transparent";
 
     if (room.availability?.currentActivity) {
-      return "rgba(239, 68, 68, 1)";
+      return "rgb(239, 68, 68)";
     }
     if (room.availability?.nextActivity) {
-      return "rgba(234, 179, 8, 1)";
+      return "rgb(234, 179, 8)";
     }
-    return "rgba(34, 197, 94, 1)";
+    return "rgb(34, 197, 94)";
   };
 
   const svgProps = {
     Color: lineColor,
     getRoomColor,
+    onRoomClick,
   };
 
   return (

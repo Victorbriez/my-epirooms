@@ -10,17 +10,23 @@ import { Badge } from "@/components/ui/badge";
 import { LocationInterface } from "@/types/LocationInterface";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 interface ActivityPanelProps {
   activities: (LocationInterface & {
     availability: {
       currentActivity?: Activity;
-      nextActivity?: Activity;
+      nextActivity?: Activity[];
     };
   })[];
   isLoading: boolean;
   error: Error | null;
   refresh: () => void;
+  selectedRoom: string | null;
 }
 
 export function ActivityPanel({
@@ -28,6 +34,7 @@ export function ActivityPanel({
   isLoading,
   error,
   refresh,
+  selectedRoom,
 }: ActivityPanelProps) {
   const { toast } = useToast();
 
@@ -78,8 +85,14 @@ export function ActivityPanel({
         {activities.map((room) => (
           <Card
             key={room.key}
+            ref={(el) => {
+              if (el && selectedRoom === room.key) {
+                el.scrollIntoView({ behavior: "smooth", block: "center" });
+              }
+            }}
             className={cn(
-              "overflow-hidden border-2 transition-colors hover:bg-muted/50 border-muted/50",
+              "overflow-hidden border-2 transition-colors hover:bg-muted/50",
+              selectedRoom === room.key ? "bg-muted/50" : "border-muted"
             )}
           >
             <CardHeader className="p-4">
@@ -98,7 +111,7 @@ export function ActivityPanel({
                 />
               ) : room.availability.nextActivity ? (
                 <ActivityInfo
-                  activity={room.availability.nextActivity}
+                  activity={room.availability.nextActivity[0]}
                   type="next"
                 />
               ) : (
@@ -120,7 +133,7 @@ function StatusBadge({
 }: {
   availability: {
     currentActivity?: Activity;
-    nextActivity?: Activity;
+    nextActivity?: Activity[];
   };
 }) {
   const variant = getBadgeVariant(availability);
@@ -192,7 +205,7 @@ function ActivityInfo({
 
 function getBadgeVariant(availability: {
   currentActivity?: Activity;
-  nextActivity?: Activity;
+  nextActivity?: Activity[];
 }): "red" | "yellow" | "green" {
   if (availability.currentActivity) return "red";
   if (availability.nextActivity) return "yellow";
@@ -201,16 +214,16 @@ function getBadgeVariant(availability: {
 
 function getStatusText(availability: {
   currentActivity?: Activity;
-  nextActivity?: Activity;
+  nextActivity?: Activity[];
 }): string {
   if (availability.currentActivity) return "Occupé";
   if (availability.nextActivity)
-    return `Libre jusqu'à ${availability.nextActivity.start.toLocaleTimeString(
+    return `Libre jusqu'à ${availability.nextActivity[0].start.toLocaleTimeString(
       "fr-FR",
       {
         hour: "2-digit",
         minute: "2-digit",
-      },
+      }
     )}`;
   return "Libre";
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { FloorSelector } from "@/components/floor-selector";
 import { ActivityPanel } from "@/components/activity-panel";
 import { Separator } from "@/components/ui/separator";
@@ -15,15 +15,22 @@ export default function Page() {
   const [currentFloor, setCurrentFloor] = useState(1);
   const { eventList, isLoading, error, refresh } = usePlanning();
   const roomList = useMemo(() => Location as LocationInterface[], []);
+  const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+
+  const handleRoomClick = useCallback((roomKey: string) => {
+    setSelectedRoom((prevSelected) =>
+      prevSelected === roomKey ? null : roomKey
+    );
+  }, []);
 
   const currentFloorRooms = useMemo(
     () => roomList.filter((room) => room.floor === currentFloor.toString()),
-    [roomList, currentFloor],
+    [roomList, currentFloor]
   );
 
   const floorActivities = useMemo(
     () => getFloorActivity(currentFloorRooms, eventList),
-    [currentFloorRooms, eventList],
+    [currentFloorRooms, eventList]
   );
 
   return (
@@ -37,6 +44,7 @@ export default function Page() {
             isLoading={isLoading}
             error={error}
             refresh={refresh}
+            selectedRoom={selectedRoom}
           />
           <FloorSelector
             currentFloor={currentFloor}
@@ -54,6 +62,7 @@ export default function Page() {
             isLoading={isLoading}
             error={error}
             activities={floorActivities}
+            onRoomClick={handleRoomClick}
           />
         </div>
       </div>
@@ -63,17 +72,19 @@ export default function Page() {
 
 function getFloorActivity(
   roomList: LocationInterface[],
-  activities: Activity[],
+  activities: Activity[]
 ): (LocationInterface & {
-  availability: { currentActivity?: Activity; nextActivity?: Activity };
+  availability: { currentActivity?: Activity; nextActivity?: Activity[] };
 })[] {
   const now = new Date();
   return roomList.map((room) => {
     const events = activities.filter(
-      (activity) => activity.roomCode === room.key,
+      (activity) => activity.roomCode === room.key
     );
     const currentActivity = events.find((e) => now >= e.start && now < e.end);
-    const nextActivity = events.find((e) => now < e.start);
+    const nextActivity = events
+      .filter((e) => e.start > now)
+      .sort((a, b) => a.start.getTime() - b.start.getTime());
     return {
       ...room,
       availability: {

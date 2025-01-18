@@ -3,14 +3,20 @@
 interface FloorPlanProps {
   Color: string;
   getRoomColor: (roomKey: string) => string;
+  onRoomClick?: (roomKey: string) => void;
 }
 
-export default function FloorPlanSVG1({ Color, getRoomColor }: FloorPlanProps) {
+export default function FloorPlanSVG1({
+  Color,
+  getRoomColor,
+  onRoomClick,
+}: FloorPlanProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1300 800"
-      className="w-full h-auto"
+      width="100%"
+      height="100%"
     >
       <defs>
         <pattern
@@ -37,7 +43,13 @@ export default function FloorPlanSVG1({ Color, getRoomColor }: FloorPlanProps) {
           <rect x="0" y="0" width="1300" height="800" fillOpacity="0" />
         </g>
         <g id="rooms">
-          <g id="S-11-Microtech">
+          <g
+            id="S-11-Microtech"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-11-Microtech")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="2"
               y="141.48"
@@ -46,7 +58,13 @@ export default function FloorPlanSVG1({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-11-Microtech")}
             />
           </g>
-          <g id="S-12-Pandora">
+          <g
+            id="S-12-Pandora"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-12-Pandora")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="4"
               y="614"
@@ -55,7 +73,13 @@ export default function FloorPlanSVG1({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-12-Pandora")}
             />
           </g>
-          <g id="S-14-Poudlard">
+          <g
+            id="S-14-Poudlard"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-14-Poudlard")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <path
               d="M 1064.96 374.73 L 1071.98 314.73 L 1173.04 314.73 L 1166.02 374.73 Z"
               transform="translate(0,344.73) scale(1,-1) translate(0,-344.73) rotate(15,1119,344.73)"
@@ -75,6 +99,47 @@ export default function FloorPlanSVG1({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-14-Poudlard")}
             />
           </g>
+          <g
+            id="O-12-Arrakis"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/O-12-Arrakis")
+            }
+            style={{ cursor: "pointer" }}
+          >
+            <rect
+              x="4"
+              y="376"
+              width="95"
+              height="182.48"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/O-12-Arrakis")}
+            />
+          </g>
+          <g
+            id="B-15-Krikkit"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/B-15-Krikkit")
+            }
+            style={{ cursor: "pointer" }}
+          >
+            <path
+              d="M 1088.42 491.43 L 1107.05 383.87 L 1214.34 383.87 L 1195.71 491.43 Z"
+              transform="rotate(-30,1151.38,437.65)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-15-Krikkit")}
+            />
+          </g>
+          <g
+            id="B-14-La-Matrice"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/B-14-La-Matrice")
+            }
+            style={{ cursor: "pointer" }}
+          >
+            <path
+              d="M 1081.92 576.92 L 1097.23 501.06 L 1248.44 501.06 L 1233.13 576.92 Z"
+              transform="rotate(-30,1165.18,538.99)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-14-La-Matrice")}
+            />
+          </g>
           <g id="B-11-Gallifrey">
             <rect x="410" y="614" width="165" height="146" fill="grey" />
           </g>
@@ -85,38 +150,10 @@ export default function FloorPlanSVG1({ Color, getRoomColor }: FloorPlanProps) {
             <rect x="740" y="614.06" width="103" height="145.94" fill="grey" />
             <rect x="685" y="676.49" width="56" height="83.51" fill="grey" />
           </g>
-          <g id="O-12-Arrakis">
-            <rect
-              x="4"
-              y="376"
-              width="95"
-              height="182.48"
-              fill={getRoomColor("FR/LIL/Hopital-Militaire/O-12-Arrakis")}
-            />
-          </g>
-          <g id="B-15-Krikkit">
-            <path
-              d="M 1088.42 491.43 L 1107.05 383.87 L 1214.34 383.87 L 1195.71 491.43 Z"
-              transform="rotate(-30,1151.38,437.65)"
-              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-15-Krikkit")}
-            />
-            <path
-              d="M 1086.5 442.93 L 1086.5 374.5 L 1188.31 442.93 Z"
-              transform="translate(0,408.72)scale(1,-1)translate(0,-408.72)rotate(16,1137.41,408.72)"
-              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-15-Krikkit")}
-            />
-          </g>
-          <g id="B-14-La-Matrice">
-            <path
-              d="M 1081.92 576.92 L 1097.23 501.06 L 1248.44 501.06 L 1233.13 576.92 Z"
-              transform="rotate(-30,1165.18,538.99)"
-              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-14-La-Matrice")}
-            />
-          </g>
           <g
             id="room-labels"
             className="text-[16px]"
-            style={{ fontFamily: "Helvetica" }}
+            style={{ fontFamily: "Helvetica", cursor: "pointer" }}
           >
             <text x="105" y="225" textAnchor="middle" fill={Color}>
               Microtech

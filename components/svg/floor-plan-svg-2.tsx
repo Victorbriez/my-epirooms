@@ -3,9 +3,14 @@
 interface FloorPlanProps {
   Color: string;
   getRoomColor: (roomKey: string) => string;
+  onRoomClick?: (roomKey: string) => void;
 }
 
-export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
+export default function FloorPlanSVG2({
+  Color,
+  getRoomColor,
+  onRoomClick,
+}: FloorPlanProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +43,13 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
           <rect x="0" y="0" width="1300" height="800" fillOpacity="0" />
         </g>
         <g id="rooms">
-          <g id="S-21a-Denis">
+          <g
+            id="S-21a-Denis"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-21a-Denis")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="2"
               y="141"
@@ -47,7 +58,13 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-21a-Denis")}
             />
           </g>
-          <g id="S-21b-MacAlistair">
+          <g
+            id="S-21b-MacAlistair"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-21b-MacAlistair")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="4"
               y="298"
@@ -56,7 +73,13 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-21b-MacAlistair")}
             />
           </g>
-          <g id="S-21c-Ritchie">
+          <g
+            id="S-21c-Ritchie"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-21c-Ritchie")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="214"
               y="296"
@@ -65,7 +88,13 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-21c-Ritchie")}
             />
           </g>
-          <g id="S-22-Ada-Lovelace">
+          <g
+            id="S-22-Ada-Lovelace"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-22-Ada-Lovelace")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="4"
               y="614"
@@ -74,7 +103,13 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-22-Ada-Lovelace")}
             />
           </g>
-          <g id="S-23a-Hedy-Lamarr">
+          <g
+            id="S-23a-Hedy-Lamarr"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-23a-Hedy-Lamarr")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="680"
               y="676"
@@ -90,7 +125,13 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-23a-Hedy-Lamarr")}
             />
           </g>
-          <g id="S-23b-Al-Jazari">
+          <g
+            id="S-23b-Al-Jazari"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-23b-Al-Jazari")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="740"
               y="614"
@@ -99,7 +140,13 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-23b-Al-Jazari")}
             />
           </g>
-          <g id="S-24-Roland-Moreno">
+          <g
+            id="S-24-Roland-Moreno"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <path
               d="M 839 174 L 839 104 L 920 174 Z"
               transform="translate(0,139)scale(1,-1)translate(0,-139)"
@@ -111,7 +158,6 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")}
             />
             <path
-              xmlns="http://www.w3.org/2000/svg"
               d="M 839 88 L 903 88 L 903 106 L 839 106 L 839 88 Z"
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")}
             />
@@ -124,7 +170,13 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")}
             />
           </g>
-          <g id="S-25b-Barzey">
+          <g
+            id="S-25b-Barzey"
+            onClick={() =>
+              onRoomClick?.("FR/LIL/Hopital-Militaire/S-25b-Barzey")
+            }
+            style={{ cursor: "pointer" }}
+          >
             <path
               d="M 1048.58 579.9 L 1085.77 376.2 L 1235.53 376.2 L 1198.34 579.9 Z"
               transform="rotate(-30,1142.05,478.05)"
@@ -136,7 +188,11 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-25b-Barzey")}
             />
           </g>
-          <g id="S-25a-Gwen">
+          <g
+            id="S-25a-Gwen"
+            onClick={() => onRoomClick?.("FR/LIL/Hopital-Militaire/S-25a-Gwen")}
+            style={{ cursor: "pointer" }}
+          >
             <rect
               x="977.94"
               y="212.35"
@@ -162,7 +218,7 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
           <g
             id="room-labels"
             className="text-[16px]"
-            style={{ fontFamily: "Helvetica" }}
+            style={{ fontFamily: "Helvetica", cursor: "pointer" }}
           >
             <text x="103" y="223" textAnchor="middle" fill={Color}>
               Denis
