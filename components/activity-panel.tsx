@@ -31,7 +31,7 @@ export function ActivityPanel({
 }: ActivityPanelProps) {
   const { toast } = useToast();
 
-  if (isLoading || error) {
+  if (error || isLoading) {
     if (error) {
       toast({
         variant: "destructive",

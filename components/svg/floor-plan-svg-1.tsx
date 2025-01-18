@@ -2,9 +2,10 @@
 
 interface FloorPlanProps {
   Color: string;
+  getRoomColor: (roomKey: string) => string;
 }
 
-export default function FloorPlanSVG1({ Color }: FloorPlanProps) {
+export default function FloorPlanSVG1({ Color, getRoomColor }: FloorPlanProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -33,23 +34,37 @@ export default function FloorPlanSVG1({ Color }: FloorPlanProps) {
       </defs>
       <g>
         <g id="background">
-          <rect x="0" y="0" width="1290" height="764" fillOpacity="0" />
+          <rect x="0" y="0" width="1300" height="800" fillOpacity="0" />
         </g>
-        <g id="rooms" fillOpacity="0">
+        <g id="rooms">
           <g id="S-11-Microtech">
-            <rect x="2" y="141.48" width="209" height="152.52" />
+            <rect
+              x="2"
+              y="141.48"
+              width="209"
+              height="152.52"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-11-Microtech")}
+            />
           </g>
           <g id="S-12-Pandora">
-            <rect x="4" y="614" width="402" height="146" />
+            <rect
+              x="4"
+              y="614"
+              width="402"
+              height="146"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-12-Pandora")}
+            />
           </g>
           <g id="S-14-Poudlard">
             <path
               d="M 1064.96 374.73 L 1071.98 314.73 L 1173.04 314.73 L 1166.02 374.73 Z"
-              transform="translate(0,344.73)scale(1,-1)translate(0,-344.73)rotate(15,1119,344.73)"
+              transform="translate(0,344.73) scale(1,-1) translate(0,-344.73) rotate(15,1119,344.73)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-14-Poudlard")}
             />
             <path
               d="M 903.54 177.45 L 1171.98 177.45 L 1171.98 340.18 L 903.54 340.18 L 903.54 177.45 Z"
               transform="rotate(75,1037.76,258.82)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-14-Poudlard")}
             />
             <rect
               x="925.7"
@@ -57,76 +72,62 @@ export default function FloorPlanSVG1({ Color }: FloorPlanProps) {
               width="266.55"
               height="147.35"
               transform="rotate(70,1058.98,245.74)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-14-Poudlard")}
             />
           </g>
           <g id="B-11-Gallifrey">
-            <rect x="410" y="614" width="165" height="146" />
+            <rect
+              x="410"
+              y="614"
+              width="165"
+              height="146"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-11-Gallifrey")}
+            />
           </g>
           <g id="B-12-Le-Continental">
-            <rect x="579" y="614" width="102" height="146" />
-          </g>
-          <g id="B-13-Kaer-Morhen">
-            <rect x="740" y="614.06" width="103" height="145.94" />
-            <rect x="685" y="676.49" width="55" height="83.51" />
-          </g>
-          <g id="B-14-La-Matrice">
-            <path
-              d="M 1081.92 576.92 L 1097.23 501.06 L 1248.44 501.06 L 1233.13 576.92 Z"
-              transform="rotate(-30,1165.18,538.99)"
+            <rect
+              x="579"
+              y="614"
+              width="102"
+              height="146"
+              fill={getRoomColor(
+                "FR/LIL/Hopital-Militaire/B-12-Le-Continental"
+              )}
             />
-          </g>
-          <g id="B-15-Krikkit">
-            <path
-              d="M 1088.42 491.43 L 1107.05 383.87 L 1214.34 383.87 L 1195.71 491.43 Z"
-              transform="rotate(-30,1151.38,437.65)"
-            />
-            <path
-              d="M 1086.5 442.93 L 1086.5 374.5 L 1188.31 442.93 Z"
-              transform="translate(0,408.72)scale(1,-1)translate(0,-408.72)rotate(16,1137.41,408.72)"
-            />
-          </g>
-          <g id="O-11-Kanojedo">
-            <rect x="215" y="296.48" width="187.48" height="117.52" />
           </g>
           <g id="O-12-Arrakis">
-            <rect x="4" y="376" width="95" height="182.48" />
+            <rect
+              x="4"
+              y="376"
+              width="95"
+              height="182.48"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/O-12-Arrakis")}
+            />
           </g>
           <g
             id="room-labels"
             className="text-[16px]"
             style={{ fontFamily: "Helvetica" }}
           >
-            <text x="105" y="225" textAnchor="middle">
+            <text x="105" y="225" textAnchor="middle" fill={Color}>
               Microtech
             </text>
-            <text x="205" y="690" textAnchor="middle">
+            <text x="205" y="690" textAnchor="middle" fill={Color}>
               Pandora
             </text>
-            <text x="1045" y="260" textAnchor="middle">
+            <text x="1045" y="260" textAnchor="middle" fill={Color}>
               Poudlard
             </text>
-            <text x="495" y="690" textAnchor="middle">
+            <text x="495" y="690" textAnchor="middle" fill={Color}>
               Gallifrey
             </text>
-            <text x="630" y="678" textAnchor="middle">
+            <text x="630" y="678" textAnchor="middle" fill={Color}>
               Le
             </text>
-            <text x="630" y="702" textAnchor="middle">
+            <text x="630" y="702" textAnchor="middle" fill={Color}>
               Continental
             </text>
-            <text x="765" y="700" textAnchor="middle">
-              Kaer Morhen
-            </text>
-            <text x="1160" y="545" textAnchor="middle">
-              La Matrice
-            </text>
-            <text x="1145" y="440" textAnchor="middle">
-              Krikkit
-            </text>
-            <text x="310" y="360" textAnchor="middle">
-              Kanojedo
-            </text>
-            <text x="50" y="470" textAnchor="middle">
+            <text x="50" y="470" textAnchor="middle" fill={Color}>
               Arrakis
             </text>
           </g>

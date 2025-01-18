@@ -2,9 +2,10 @@
 
 interface FloorPlanProps {
   Color: string;
+  getRoomColor: (roomKey: string) => string;
 }
 
-export default function FloorPlanSVG2({ Color }: FloorPlanProps) {
+export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -34,106 +35,115 @@ export default function FloorPlanSVG2({ Color }: FloorPlanProps) {
       </defs>
       <g>
         <g id="background">
-          <rect x="0" y="0" width="1255" height="764" fillOpacity="0" />
+          <rect x="0" y="0" width="1300" height="800" fillOpacity="0" />
         </g>
-        <g id="rooms" fillOpacity="0">
+        <g id="rooms">
           <g id="S-21a-Denis">
-            <rect x="2" y="141" width="209" height="153" />
+            <rect
+              x="2"
+              y="141"
+              width="209"
+              height="153"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-21a-Denis")}
+            />
           </g>
           <g id="S-21b-MacAlistair">
-            <rect x="4" y="298" width="206" height="260" />
+            <rect
+              x="4"
+              y="298"
+              width="206"
+              height="260"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-21b-MacAlistair")}
+            />
           </g>
           <g id="S-21c-Ritchie">
-            <rect x="214" y="296" width="188.48" height="262" />
+            <rect
+              x="214"
+              y="296"
+              width="188.48"
+              height="262"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-21c-Ritchie")}
+            />
           </g>
           <g id="S-22-Ada-Lovelace">
-            <rect x="4" y="614" width="339" height="146" />
+            <rect
+              x="4"
+              y="614"
+              width="339"
+              height="146"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-22-Ada-Lovelace")}
+            />
           </g>
           <g id="S-23a-Hedy-Lamarr">
-            <rect x="680" y="676" width="56" height="84" />
-            <rect x="511" y="614" width="170" height="146" />
+            <rect
+              x="680"
+              y="676"
+              width="56"
+              height="84"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-23a-Hedy-Lamarr")}
+            />
+            <rect
+              x="511"
+              y="614"
+              width="170"
+              height="146"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-23a-Hedy-Lamarr")}
+            />
           </g>
           <g id="S-23b-Al-Jazari">
-            <rect x="740" y="614" width="104" height="146" />
+            <rect
+              x="740"
+              y="614"
+              width="104"
+              height="146"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-23b-Al-Jazari")}
+            />
           </g>
           <g id="S-24-Roland-Moreno">
             <path
               d="M 839 174 L 839 104 L 920 174 Z"
               transform="translate(0,139)scale(1,-1)translate(0,-139)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")}
             />
             <path
               d="M 797.17 445.12 L 797.17 132.2 L 881.58 445.12 Z"
               transform="translate(839.37,0)scale(-1,1)translate(-839.37,0)rotate(15,839.37,288.66)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")}
             />
-            <path d="M 839 88 L 903 88 L 903 106 L 839 106 L 839 88 Z" />
             <rect
               x="877.08"
               y="108.67"
               width="84.91"
               height="314"
               transform="rotate(-15,920.03,265.67)"
-            />
-          </g>
-          <g id="S-25a-Gwen">
-            <rect
-              x="977.94"
-              y="212.35"
-              width="101.38"
-              height="180.72"
-              transform="rotate(345,1028.63,302.71)"
-            />
-            <path
-              d="M 998.87 376.61 L 1118.87 376.61 L 1118.87 390.61 L 998.87 390.61 L 998.87 376.61 Z"
-              transform="rotate(340,1058.87,383.61)"
-            />
-            <rect
-              x="1042.75"
-              y="92.63"
-              width="85.05"
-              height="281.47"
-              transform="rotate(340,1085.28,233.37)"
-            />
-          </g>
-          <g id="S-25b-Barzey">
-            <path
-              d="M 1048.58 579.9 L 1085.77 376.2 L 1235.53 376.2 L 1198.34 579.9 Z"
-              transform="rotate(-30,1142.05,478.05)"
-            />
-            <path
-              d="M 1043 379 L 1163 379 L 1163 439 L 1043 439 L 1043 379 Z"
-              transform="rotate(340,1103,409)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")}
             />
           </g>
           <g
             id="room-labels"
-            style={{ fontFamily: "Helvetica", fontSize: "16px" }}
+            className="text-[16px]"
+            style={{ fontFamily: "Helvetica" }}
           >
-            <text x="103" y="223" textAnchor="middle">
+            <text x="103" y="223" textAnchor="middle" fill={Color}>
               Denis
             </text>
-            <text x="97" y="436" textAnchor="middle">
+            <text x="97" y="436" textAnchor="middle" fill={Color}>
               MacAlistair
             </text>
-            <text x="311" y="439" textAnchor="middle">
+            <text x="311" y="439" textAnchor="middle" fill={Color}>
               Ritchie
             </text>
-            <text x="163" y="692" textAnchor="middle">
+            <text x="163" y="692" textAnchor="middle" fill={Color}>
               Ada Lovelace
             </text>
-            <text x="618" y="697" textAnchor="middle">
+            <text x="618" y="697" textAnchor="middle" fill={Color}>
               Hedy Lamarr
             </text>
-            <text x="790" y="698" textAnchor="middle">
+            <text x="790" y="698" textAnchor="middle" fill={Color}>
               Al Jazari
             </text>
-            <text x="907" y="298" textAnchor="middle">
+            <text x="907" y="298" textAnchor="middle" fill={Color}>
               Roland Moreno
-            </text>
-            <text x="1063" y="278" textAnchor="middle">
-              Gwen
-            </text>
-            <text x="1143" y="476" textAnchor="middle">
-              Barzey
             </text>
           </g>
         </g>

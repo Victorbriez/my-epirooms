@@ -2,9 +2,10 @@
 
 interface FloorPlanProps {
   Color: string;
+  getRoomColor: (roomKey: string) => string;
 }
 
-export default function FloorPlanSVG0({ Color }: FloorPlanProps) {
+export default function FloorPlanSVG0({ Color, getRoomColor }: FloorPlanProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -34,45 +35,83 @@ export default function FloorPlanSVG0({ Color }: FloorPlanProps) {
       </defs>
       <g>
         <g id="background">
-          <rect x="0" y="0" width="1137" height="627" fillOpacity="0" />
+          <rect x="0" y="0" width="1300" height="800" fillOpacity="0" />
         </g>
-        <g id="rooms" fillOpacity="0">
+        <g id="rooms" fill="none">
           <g id="B-01-Bulma">
-            <rect x="218.46" y="3.49" width="188.54" height="103.51" />
+            <rect
+              x="218.46"
+              y="3.49"
+              width="188.54"
+              height="103.51"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-01-Bulma")}
+            />
           </g>
           <g id="B-02-Elliot-Alderson">
-            <rect x="6" y="3.48" width="95" height="153" />
+            <rect
+              x="6"
+              y="3.48"
+              width="95"
+              height="153"
+              fill={getRoomColor(
+                "FR/LIL/Hopital-Militaire/B-02-Elliot-Alderson"
+              )}
+            />
           </g>
           <g id="S-01-Stark">
-            <rect x="219" y="158.48" width="187.48" height="117.52" />
+            <rect
+              x="219"
+              y="158.48"
+              width="187.48"
+              height="117.52"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-01-Stark")}
+            />
           </g>
           <g id="S-02-Pru-Ha">
-            <rect x="218.55" y="387.04" width="188.45" height="37.96" />
-            <rect x="6" y="425" width="400" height="197.48" />
+            <rect
+              x="218.55"
+              y="388"
+              width="188.45"
+              height="38"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-02-Pru-Ha")}
+            />
+            <rect
+              x="6"
+              y="425"
+              width="400"
+              height="197.48"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-02-Pru-Ha")}
+            />
           </g>
           <g id="S-03-Mei-Hatsume">
-            <rect x="410" y="421" width="170" height="201.48" />
+            <rect
+              x="410"
+              y="421"
+              width="170"
+              height="201.48"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-03-Mei-Hatsume")}
+            />
           </g>
           <g
             id="room-labels"
             style={{ fontFamily: "Helvetica", fontSize: "16px" }}
           >
-            <text x="305" y="60" textAnchor="middle">
+            <text x="305" y="60" textAnchor="middle" fill={Color}>
               Bulma
             </text>
-            <text x="50" y="73" textAnchor="middle">
+            <text x="50" y="73" textAnchor="middle" fill={Color}>
               Elliot
             </text>
-            <text x="50" y="97" textAnchor="middle">
+            <text x="50" y="97" textAnchor="middle" fill={Color}>
               Alderson
             </text>
-            <text x="305" y="220" textAnchor="middle">
+            <text x="305" y="220" textAnchor="middle" fill={Color}>
               Stark
             </text>
-            <text x="200" y="530" textAnchor="middle">
+            <text x="200" y="530" textAnchor="middle" fill={Color}>
               Pru&apos;Ha
             </text>
-            <text x="490" y="530" textAnchor="middle">
+            <text x="490" y="530" textAnchor="middle" fill={Color}>
               Mei Hatsume
             </text>
           </g>

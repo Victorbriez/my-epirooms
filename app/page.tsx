@@ -53,6 +53,7 @@ export default function Page() {
             currentFloor={currentFloor}
             isLoading={isLoading}
             error={error}
+            activities={floorActivities}
           />
         </div>
       </div>
