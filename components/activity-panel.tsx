@@ -72,16 +72,6 @@ export function ActivityPanel({
     );
   }
 
-  if (activities.length === 0) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <p className="text-lg text-muted-foreground">
-          Aucune activité n&apos;est prévue pour le moment.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <ScrollArea className="h-full rounded-lg">
       <div className="space-y-4 p-4">
@@ -89,12 +79,7 @@ export function ActivityPanel({
           <Card
             key={room.key}
             className={cn(
-              "overflow-hidden border-2 transition-colors hover:bg-muted/50",
-              room.availability.currentActivity
-                ? "border-destructive/20"
-                : room.availability.nextActivity
-                ? "border-secondary/20"
-                : "border-muted"
+              "overflow-hidden border-2 transition-colors hover:bg-muted/50 border-muted/50"
             )}
           >
             <CardHeader className="p-4">
@@ -141,18 +126,7 @@ function StatusBadge({
   const variant = getBadgeVariant(availability);
   const text = getStatusText(availability);
 
-  return (
-    <Badge
-      variant={variant}
-      className={cn(
-        "transition-all",
-        availability.currentActivity &&
-          "animate-pulse bg-destructive/10 text-destructive hover:bg-destructive/20"
-      )}
-    >
-      {text}
-    </Badge>
-  );
+  return <Badge variant={variant}>{text}</Badge>;
 }
 
 function ActivityInfo({
@@ -219,10 +193,10 @@ function ActivityInfo({
 function getBadgeVariant(availability: {
   currentActivity?: Activity;
   nextActivity?: Activity;
-}): "destructive" | "secondary" | "default" {
-  if (availability.currentActivity) return "destructive";
-  if (availability.nextActivity) return "secondary";
-  return "default";
+}): "red" | "yellow" | "green" {
+  if (availability.currentActivity) return "red";
+  if (availability.nextActivity) return "yellow";
+  return "green";
 }
 
 function getStatusText(availability: {
@@ -230,6 +204,13 @@ function getStatusText(availability: {
   nextActivity?: Activity;
 }): string {
   if (availability.currentActivity) return "Occupé";
-  if (availability.nextActivity) return "Libre jusqu'à";
+  if (availability.nextActivity)
+    return `Libre jusqu'à ${availability.nextActivity.start.toLocaleTimeString(
+      "fr-FR",
+      {
+        hour: "2-digit",
+        minute: "2-digit",
+      }
+    )}`;
   return "Libre";
 }
