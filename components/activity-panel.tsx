@@ -79,7 +79,7 @@ export function ActivityPanel({
           <Card
             key={room.key}
             className={cn(
-              "overflow-hidden border-2 transition-colors hover:bg-muted/50 border-muted/50"
+              "overflow-hidden border-2 transition-colors hover:bg-muted/50 border-muted/50",
             )}
           >
             <CardHeader className="p-4">
@@ -210,7 +210,7 @@ function getStatusText(availability: {
       {
         hour: "2-digit",
         minute: "2-digit",
-      }
+      },
     )}`;
   return "Libre";
 }

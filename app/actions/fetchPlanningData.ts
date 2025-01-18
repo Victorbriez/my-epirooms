@@ -3,7 +3,7 @@
 import { ActivityInterface } from "@/types/ActivityInterface";
 
 export async function fetchPlanningData(
-  date: string
+  date: string,
 ): Promise<ActivityInterface[]> {
   const url = `https://lille-epirooms.epitest.eu/?date=${date}`;
 

@@ -54,7 +54,7 @@ export default function FloorPlanSVG0({ Color, getRoomColor }: FloorPlanProps) {
               width="95"
               height="153"
               fill={getRoomColor(
-                "FR/LIL/Hopital-Militaire/B-02-Elliot-Alderson"
+                "FR/LIL/Hopital-Militaire/B-02-Elliot-Alderson",
               )}
             />
           </g>

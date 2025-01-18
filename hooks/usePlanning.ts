@@ -17,7 +17,7 @@ export function usePlanning() {
           .filter((activity) => now <= activity.end)
           .sort((a, b) => a.start.getTime() - b.start.getTime());
       },
-    []
+    [],
   );
 
   const fetchActivities = useCallback(async () => {
