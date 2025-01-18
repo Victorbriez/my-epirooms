@@ -2,9 +2,9 @@
 
 import { useTheme } from "next-themes";
 import { Skeleton } from "@/components/ui/skeleton";
-import FloorPlanSVG0 from "@/components/floor-plan-svg-0";
-import FloorPlanSVG1 from "@/components/floor-plan-svg-1";
-import FloorPlanSVG2 from "@/components/floor-plan-svg-2";
+import FloorPlanSVG0 from "@/components/svg/floor-plan-svg-0";
+import FloorPlanSVG1 from "@/components/svg/floor-plan-svg-1";
+import FloorPlanSVG2 from "@/components/svg/floor-plan-svg-2";
 
 interface FloorPlanProps {
   currentFloor: number;

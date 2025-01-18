@@ -143,11 +143,6 @@ export default function FloorPlanSVG3({ Color }: FloorPlanProps) {
             fill="url(#mx-pattern-hatch-1-636263-0)"
             transform="rotate(330,1039.09,559.3)"
           />
-          <path
-            d="M 849.6 544.05 L 823.65 438.84 L 967.8 544.05 Z"
-            fill="#a20025"
-            transform="translate(0,491.45)scale(1,-1)translate(0,-491.45)rotate(15,895.72,491.45)"
-          />
           <rect x="4" y="562" width="142.33" height="48" fillOpacity="0" />
           <rect
             x="912.07"
@@ -393,15 +388,6 @@ export default function FloorPlanSVG3({ Color }: FloorPlanProps) {
               />
             </svg>
           </g>
-          <text
-            x="876"
-            y="475"
-            fontFamily="Helvetica"
-            fontSize="16px"
-            textAnchor="middle"
-          >
-            AER
-          </text>
         </g>
       </g>
     </svg>
