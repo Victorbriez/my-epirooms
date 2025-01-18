@@ -4,7 +4,7 @@ interface FloorPlanProps {
   Color: string;
 }
 
-export default function FloorPlanSVG2({ Color }: FloorPlanProps) {
+export default function FloorPlanSVG1({ Color }: FloorPlanProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
