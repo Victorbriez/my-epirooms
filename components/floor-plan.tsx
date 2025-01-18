@@ -46,7 +46,7 @@ export function FloorPlan({
     if (room.availability?.currentActivity) {
       return "rgb(239, 68, 68)";
     }
-    if (room.availability?.nextActivity) {
+    if (room.availability?.nextActivity && room.availability.nextActivity.length > 0) {
       return "rgb(234, 179, 8)";
     }
     return "rgb(34, 197, 94)";

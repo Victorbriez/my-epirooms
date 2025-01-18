@@ -45,6 +45,7 @@ export default function Page() {
             error={error}
             refresh={refresh}
             selectedRoom={selectedRoom}
+            onRoomClick={handleRoomClick}
           />
           <FloorSelector
             currentFloor={currentFloor}
