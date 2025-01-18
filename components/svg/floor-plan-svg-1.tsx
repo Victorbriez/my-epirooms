@@ -76,24 +76,14 @@ export default function FloorPlanSVG1({ Color, getRoomColor }: FloorPlanProps) {
             />
           </g>
           <g id="B-11-Gallifrey">
-            <rect
-              x="410"
-              y="614"
-              width="165"
-              height="146"
-              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-11-Gallifrey")}
-            />
+            <rect x="410" y="614" width="165" height="146" fill="grey" />
           </g>
           <g id="B-12-Le-Continental">
-            <rect
-              x="579"
-              y="614"
-              width="102"
-              height="146"
-              fill={getRoomColor(
-                "FR/LIL/Hopital-Militaire/B-12-Le-Continental",
-              )}
-            />
+            <rect x="579" y="614" width="102" height="146" fill="grey" />
+          </g>
+          <g id="B-13-Kaer-Morhen">
+            <rect x="740" y="614.06" width="103" height="145.94" fill="grey" />
+            <rect x="685" y="676.49" width="56" height="83.51" fill="grey" />
           </g>
           <g id="O-12-Arrakis">
             <rect
@@ -102,6 +92,25 @@ export default function FloorPlanSVG1({ Color, getRoomColor }: FloorPlanProps) {
               width="95"
               height="182.48"
               fill={getRoomColor("FR/LIL/Hopital-Militaire/O-12-Arrakis")}
+            />
+          </g>
+          <g id="B-15-Krikkit">
+            <path
+              d="M 1088.42 491.43 L 1107.05 383.87 L 1214.34 383.87 L 1195.71 491.43 Z"
+              transform="rotate(-30,1151.38,437.65)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-15-Krikkit")}
+            />
+            <path
+              d="M 1086.5 442.93 L 1086.5 374.5 L 1188.31 442.93 Z"
+              transform="translate(0,408.72)scale(1,-1)translate(0,-408.72)rotate(16,1137.41,408.72)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-15-Krikkit")}
+            />
+          </g>
+          <g id="B-14-La-Matrice">
+            <path
+              d="M 1081.92 576.92 L 1097.23 501.06 L 1248.44 501.06 L 1233.13 576.92 Z"
+              transform="rotate(-30,1165.18,538.99)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-14-La-Matrice")}
             />
           </g>
           <g
@@ -127,8 +136,17 @@ export default function FloorPlanSVG1({ Color, getRoomColor }: FloorPlanProps) {
             <text x="630" y="702" textAnchor="middle" fill={Color}>
               Continental
             </text>
+            <text x="765" y="700" textAnchor="middle" fill={Color}>
+              Kaer Morhen
+            </text>
             <text x="50" y="470" textAnchor="middle" fill={Color}>
               Arrakis
+            </text>
+            <text x="1145" y="440" textAnchor="middle" fill={Color}>
+              Krikkit
+            </text>
+            <text x="1165" y="540" textAnchor="middle" fill={Color}>
+              La Matrice
             </text>
           </g>
         </g>

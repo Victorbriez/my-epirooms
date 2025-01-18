@@ -110,6 +110,11 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
               transform="translate(839.37,0)scale(-1,1)translate(-839.37,0)rotate(15,839.37,288.66)"
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")}
             />
+            <path
+              xmlns="http://www.w3.org/2000/svg"
+              d="M 839 88 L 903 88 L 903 106 L 839 106 L 839 88 Z"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")}
+            />
             <rect
               x="877.08"
               y="108.67"
@@ -117,6 +122,41 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
               height="314"
               transform="rotate(-15,920.03,265.67)"
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")}
+            />
+          </g>
+          <g id="S-25b-Barzey">
+            <path
+              d="M 1048.58 579.9 L 1085.77 376.2 L 1235.53 376.2 L 1198.34 579.9 Z"
+              transform="rotate(-30,1142.05,478.05)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-25b-Barzey")}
+            />
+            <path
+              d="M 1043 379 L 1163 379 L 1163 439 L 1043 439 Z"
+              transform="rotate(340,1103,409)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-25b-Barzey")}
+            />
+          </g>
+          <g id="S-25a-Gwen">
+            <rect
+              x="977.94"
+              y="212.35"
+              width="101.38"
+              height="180.72"
+              transform="rotate(345,1028.63,302.71)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-25a-Gwen")}
+            />
+            <path
+              d="M 998.87 376.61 L 1118.87 376.61 L 1118.87 390.61 L 998.87 390.61 L 998.87 376.61 Z"
+              transform="rotate(340,1058.87,383.61)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-25a-Gwen")}
+            />
+            <rect
+              x="1042.75"
+              y="92.63"
+              width="85.05"
+              height="281.47"
+              transform="rotate(340,1085.28,233.37)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-25a-Gwen")}
             />
           </g>
           <g
@@ -144,6 +184,12 @@ export default function FloorPlanSVG2({ Color, getRoomColor }: FloorPlanProps) {
             </text>
             <text x="907" y="298" textAnchor="middle" fill={Color}>
               Roland Moreno
+            </text>
+            <text x="1143" y="476" textAnchor="middle" fill={Color}>
+              Barzey
+            </text>
+            <text x="1063" y="278" textAnchor="middle" fill={Color}>
+              Gwen
             </text>
           </g>
         </g>

@@ -44,7 +44,7 @@ export default function FloorPlanSVG0({ Color, getRoomColor }: FloorPlanProps) {
               y="3.49"
               width="188.54"
               height="103.51"
-              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-01-Bulma")}
+              fill="grey"
             />
           </g>
           <g id="B-02-Elliot-Alderson">
@@ -54,7 +54,7 @@ export default function FloorPlanSVG0({ Color, getRoomColor }: FloorPlanProps) {
               width="95"
               height="153"
               fill={getRoomColor(
-                "FR/LIL/Hopital-Militaire/B-02-Elliot-Alderson",
+                "FR/LIL/Hopital-Militaire/B-02-Elliot-Alderson"
               )}
             />
           </g>
