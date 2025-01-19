@@ -20,7 +20,7 @@ export function Header() {
           {time.toLocaleDateString("fr-FR")}
         </div>
       </div>
-      <h1 className="text-3xl font-semibold">My_EpiRooms</h1>
+      <h1 className="text-3xl font-semibold">My-EpiRooms</h1>
     </div>
   );
 }

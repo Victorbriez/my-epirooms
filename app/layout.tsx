@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "My_EpiRooms",
+  title: "My-EpiRooms",
   description: "Interface de visualisation des salles à Epitech",
 };
 
