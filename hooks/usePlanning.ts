@@ -13,6 +13,10 @@ const SPECIAL_ROOMS = {
     { code: "FR/LIL/Hopital-Militaire/S-25a-Gwen" },
     { code: "FR/LIL/Hopital-Militaire/S-25b-Barzey" },
   ],
+  "FR/LIL/Hopital-Militaire/S-02-03-Pru-Ha-Mei-Hatsume": [
+    { code: "FR/LIL/Hopital-Militaire/S-02-Pru-Ha" },
+    { code: "FR/LIL/Hopital-Militaire/S-03-Mei-Hatsume" },
+  ],
 };
 
 export function usePlanning() {

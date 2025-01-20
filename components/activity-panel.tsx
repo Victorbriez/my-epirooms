@@ -89,8 +89,11 @@ export function ActivityPanel({
               }
             }}
             className={cn(
-              "overflow-hidden border-2 transition-colors hover:bg-muted/50 cursor-pointer",
-              selectedRoom === room.key ? "bg-muted/50" : "border-muted"
+              "overflow-hidden border-2 transition-colors cursor-pointer",
+              "hover:bg-gray-100 dark:hover:bg-gray-800",
+              selectedRoom === room.key
+                ? "border-blue-500 dark:border-blue-400"
+                : "border-gray-200 dark:border-gray-700"
             )}
             onClick={() => onRoomClick(room.key)}
           >
@@ -244,7 +247,7 @@ function getStatusText(availability: {
     const minutesUntilNext = Math.round(
       (nextActivity.start.getTime() - new Date().getTime()) / 60000
     );
-    return `Libre pendant ${minutesUntilNext} minute${
+    return `Libre encrore ${minutesUntilNext} minute${
       minutesUntilNext > 1 ? "s" : ""
     }`;
   }
