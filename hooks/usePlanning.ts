@@ -1,37 +1,69 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
-import { ActivityInterface } from "@/types/ActivityInterface";
+import { useState, useEffect, useCallback } from "react";
+import type { ActivityInterface } from "@/types/ActivityInterface";
 import { Activity } from "@/models/Activity";
 import { fetchPlanningData } from "@/app/actions/fetchPlanningData";
 
-export function usePlanning() {
-  const [eventList, setEventList] = useState<Activity[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+const SPECIAL_ROOMS = {
+  "FR/LIL/Hopital-Militaire/S-21abc-Denis-MacAlistair-Ritchie": [
+    { code: "FR/LIL/Hopital-Militaire/S-21a-Denis" },
+    { code: "FR/LIL/Hopital-Militaire/S-21b-MacAlistair" },
+    { code: "FR/LIL/Hopital-Militaire/S-21c-Ritchie" },
+  ],
+  "FR/LIL/Hopital-Militaire/S-25ab-Gwen-Barzey": [
+    { code: "FR/LIL/Hopital-Militaire/S-25a-Gwen" },
+    { code: "FR/LIL/Hopital-Militaire/S-25b-Barzey" },
+  ],
+};
 
-  const processActivities = useMemo(
-    () =>
-      (data: ActivityInterface[]): Activity[] => {
-        const now = new Date();
-        return data
-          .map((item) => new Activity(item))
-          .filter((activity) => now <= activity.end)
-          .sort((a, b) => a.start.getTime() - b.start.getTime());
-      },
-    [],
+export function usePlanning() {
+  const [state, setState] = useState<{
+    eventList: Activity[];
+    isLoading: boolean;
+    error: Error | null;
+  }>({
+    eventList: [],
+    isLoading: true,
+    error: null,
+  });
+
+  const processActivities = useCallback(
+    (data: ActivityInterface[]): Activity[] => {
+      const now = new Date();
+      return data
+        .flatMap((item) =>
+          item.room?.code && item.room.code in SPECIAL_ROOMS
+            ? SPECIAL_ROOMS[item.room.code as keyof typeof SPECIAL_ROOMS].map(
+                (room) =>
+                  new Activity({
+                    ...item,
+                    room: { ...item.room, code: room.code },
+                  })
+              )
+            : new Activity(item)
+        )
+        .filter((activity) => now <= activity.end)
+        .sort((a, b) => a.start.getTime() - b.start.getTime());
+    },
+    []
   );
 
   const fetchActivities = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
+    setState((prev) => ({ ...prev, isLoading: true, error: null }));
     try {
       const currentDate = new Date().toISOString().split("T")[0];
       const data = await fetchPlanningData(currentDate);
       const processedData = processActivities(data);
-      setEventList(processedData);
+      setState((prev) => ({
+        ...prev,
+        eventList: processedData,
+        isLoading: false,
+      }));
     } catch (e) {
-      setError(e instanceof Error ? e : new Error("An unknown error occurred"));
-    } finally {
-      setIsLoading(false);
+      setState((prev) => ({
+        ...prev,
+        error: e instanceof Error ? e : new Error("An unknown error occurred"),
+        isLoading: false,
+      }));
     }
   }, [processActivities]);
 
@@ -39,5 +71,5 @@ export function usePlanning() {
     fetchActivities();
   }, [fetchActivities]);
 
-  return { eventList, isLoading, error, refresh: fetchActivities };
+  return { ...state, refresh: fetchActivities };
 }
