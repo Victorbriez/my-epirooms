@@ -164,18 +164,6 @@ export default function FloorPlanSVG1({
             <text x="1045" y="260" textAnchor="middle" fill={Color}>
               Poudlard
             </text>
-            <text x="495" y="690" textAnchor="middle" fill={Color}>
-              Gallifrey
-            </text>
-            <text x="630" y="678" textAnchor="middle" fill={Color}>
-              Le
-            </text>
-            <text x="630" y="702" textAnchor="middle" fill={Color}>
-              Continental
-            </text>
-            <text x="765" y="700" textAnchor="middle" fill={Color}>
-              Kaer Morhen
-            </text>
             <text x="50" y="470" textAnchor="middle" fill={Color}>
               Arrakis
             </text>
@@ -184,6 +172,21 @@ export default function FloorPlanSVG1({
             </text>
             <text x="1165" y="540" textAnchor="middle" fill={Color}>
               La Matrice
+            </text>
+          </g>
+          <g
+            id="room-labels-pedago"
+            className="text-[16px]"
+            style={{ fontFamily: "Helvetica", cursor: "default" }}
+          >
+            <text x="765" y="700" textAnchor="middle" fill={Color}>
+              Kaer Morhen
+            </text>
+            <text x="495" y="690" textAnchor="middle" fill={Color}>
+              Gallifrey
+            </text>
+            <text x="630" y="702" textAnchor="middle" fill={Color}>
+              Continental
             </text>
           </g>
         </g>

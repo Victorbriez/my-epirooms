@@ -156,9 +156,6 @@ export default function FloorPlanSVG0({
             className="text-[16px]"
             style={{ fontFamily: "Helvetica", cursor: "pointer" }}
           >
-            <text x="305" y="60" textAnchor="middle" fill={Color}>
-              Bulma
-            </text>
             <text x="50" y="73" textAnchor="middle" fill={Color}>
               Elliot
             </text>
@@ -173,6 +170,15 @@ export default function FloorPlanSVG0({
             </text>
             <text x="490" y="530" textAnchor="middle" fill={Color}>
               Mei Hatsume
+            </text>
+          </g>
+          <g
+            id="room-labels-pedago"
+            className="text-[16px]"
+            style={{ fontFamily: "Helvetica", cursor: "default" }}
+          >
+            <text x="305" y="60" textAnchor="middle" fill={Color}>
+              Bulma
             </text>
           </g>
         </g>
