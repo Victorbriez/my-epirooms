@@ -5,15 +5,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { Activity } from "@/models/Activity";
-import { Calendar, Clock } from 'lucide-react';
+import { Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { LocationInterface } from "@/types/LocationInterface";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import {
-  Collapsible,
-  CollapsibleContent,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 
 interface ActivityPanelProps {
   activities: (LocationInterface & {
@@ -113,7 +110,8 @@ export function ActivityPanel({
                       activity={room.availability.currentActivity}
                       type="current"
                     />
-                  ) : room.availability.nextActivity && room.availability.nextActivity.length > 0 ? (
+                  ) : room.availability.nextActivity &&
+                    room.availability.nextActivity.length > 0 ? (
                     <ActivityInfo
                       activity={room.availability.nextActivity[0]}
                       type="next"
@@ -127,7 +125,9 @@ export function ActivityPanel({
                 </div>
                 <CollapsibleContent>
                   {selectedRoom === room.key && (
-                    <DailyActivities activities={room.availability.nextActivity || []} />
+                    <DailyActivities
+                      activities={room.availability.nextActivity || []}
+                    />
                   )}
                 </CollapsibleContent>
               </Collapsible>
@@ -219,7 +219,8 @@ function getBadgeVariant(availability: {
   nextActivity?: Activity[];
 }): "red" | "yellow" | "green" {
   if (availability.currentActivity) return "red";
-  if (availability.nextActivity && availability.nextActivity.length > 0) return "yellow";
+  if (availability.nextActivity && availability.nextActivity.length > 0)
+    return "yellow";
   return "green";
 }
 
@@ -230,37 +231,47 @@ function getStatusText(availability: {
   if (availability.currentActivity) return "Occupé";
   if (availability.nextActivity && availability.nextActivity.length > 0) {
     const nextActivity = availability.nextActivity[0];
-    return `Libre jusqu'à ${nextActivity.start.toLocaleTimeString(
-      "fr-FR",
-      {
-        hour: "2-digit",
-        minute: "2-digit",
-      }
-    )}`;
+    return `Libre jusqu'à ${nextActivity.start.toLocaleTimeString("fr-FR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    })}`;
   }
   return "Libre";
 }
 
 function DailyActivities({ activities }: { activities: Activity[] }) {
+  const displayedActivities = activities.slice(1);
+
   return (
     <div className="mt-4 space-y-3">
-      <h4 className="font-medium text-sm text-primary">Activités de la journée:</h4>
-      {activities.length > 0 ? (
+      <h4 className="font-medium text-sm text-primary">
+        Activités de la journée:
+      </h4>
+      {displayedActivities.length > 0 ? (
         <div className="space-y-2">
-          {activities.map((activity, index) => (
-            <div key={index} className="text-sm space-y-1 bg-secondary/10 p-2 rounded-md">
+          {displayedActivities.map((activity, index) => (
+            <div
+              key={index}
+              className="text-sm space-y-1 bg-secondary/10 p-2 rounded-md"
+            >
               <p className="font-medium">{activity.title}</p>
               <p className="text-muted-foreground flex items-center">
                 <Clock className="w-4 h-4 mr-2 flex-shrink-0" />
                 <span>
-                  <time dateTime={activity.start.toISOString()} className="tabular-nums font-medium">
+                  <time
+                    dateTime={activity.start.toISOString()}
+                    className="tabular-nums font-medium"
+                  >
                     {activity.start.toLocaleTimeString("fr-FR", {
                       hour: "2-digit",
                       minute: "2-digit",
                     })}
                   </time>{" "}
                   -{" "}
-                  <time dateTime={activity.end.toISOString()} className="tabular-nums font-medium">
+                  <time
+                    dateTime={activity.end.toISOString()}
+                    className="tabular-nums font-medium"
+                  >
                     {activity.end.toLocaleTimeString("fr-FR", {
                       hour: "2-digit",
                       minute: "2-digit",
@@ -279,4 +290,3 @@ function DailyActivities({ activities }: { activities: Activity[] }) {
     </div>
   );
 }
-
