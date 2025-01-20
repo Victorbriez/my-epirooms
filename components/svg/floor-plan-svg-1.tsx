@@ -126,6 +126,11 @@ export default function FloorPlanSVG1({
               transform="rotate(-30,1151.38,437.65)"
               fill={getRoomColor("FR/LIL/Hopital-Militaire/B-15-Krikkit")}
             />
+            <path
+              d="M 1086.5 442.93 L 1086.5 374.5 L 1188.31 442.93 Z"
+              transform="translate(0,408.72)scale(1,-1)translate(0,-408.72)rotate(16,1137.41,408.72)"
+              fill={getRoomColor("FR/LIL/Hopital-Militaire/B-15-Krikkit")}
+            />
           </g>
           <g
             id="B-14-La-Matrice"
