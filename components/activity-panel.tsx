@@ -219,7 +219,12 @@ function getBadgeVariant(availability: {
   nextActivity?: Activity[];
 }): "red" | "yellow" | "green" {
   if (availability.currentActivity) return "red";
-  if (availability.nextActivity && availability.nextActivity.length > 0)
+  if (
+    availability.nextActivity &&
+    availability.nextActivity.length > 0 &&
+    availability.nextActivity[0].start.getTime() - new Date().getTime() <=
+      3600000
+  )
     return "yellow";
   return "green";
 }
@@ -229,12 +234,19 @@ function getStatusText(availability: {
   nextActivity?: Activity[];
 }): string {
   if (availability.currentActivity) return "Occupé";
-  if (availability.nextActivity && availability.nextActivity.length > 0) {
+  if (
+    availability.nextActivity &&
+    availability.nextActivity.length > 0 &&
+    availability.nextActivity[0].start.getTime() - new Date().getTime() <=
+      3600000
+  ) {
     const nextActivity = availability.nextActivity[0];
-    return `Libre jusqu'à ${nextActivity.start.toLocaleTimeString("fr-FR", {
-      hour: "2-digit",
-      minute: "2-digit",
-    })}`;
+    const minutesUntilNext = Math.round(
+      (nextActivity.start.getTime() - new Date().getTime()) / 60000
+    );
+    return `Libre pendant ${minutesUntilNext} minute${
+      minutesUntilNext > 1 ? "s" : ""
+    }`;
   }
   return "Libre";
 }
