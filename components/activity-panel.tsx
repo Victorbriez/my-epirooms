@@ -24,6 +24,7 @@ interface ActivityPanelProps {
   refresh: () => void;
   selectedRoom: string | null;
   onRoomClick: (roomKey: string) => void;
+  currentTime: Date;
 }
 
 export function ActivityPanel({
@@ -33,6 +34,7 @@ export function ActivityPanel({
   refresh,
   selectedRoom,
   onRoomClick,
+  currentTime,
 }: ActivityPanelProps) {
   const { toast } = useToast();
 
@@ -102,7 +104,10 @@ export function ActivityPanel({
                 <CardTitle className="text-lg font-medium line-clamp-1">
                   {room.title}
                 </CardTitle>
-                <StatusBadge availability={room.availability} />
+                <StatusBadge
+                  availability={room.availability}
+                  currentTime={currentTime}
+                />
               </div>
             </CardHeader>
             <CardContent className="p-4 pt-0">
@@ -144,14 +149,16 @@ export function ActivityPanel({
 
 function StatusBadge({
   availability,
+  currentTime,
 }: {
   availability: {
     currentActivity?: Activity;
     nextActivity?: Activity[];
   };
+  currentTime: Date;
 }) {
-  const variant = getBadgeVariant(availability);
-  const text = getStatusText(availability);
+  const variant = getBadgeVariant(availability, currentTime);
+  const text = getStatusText(availability, currentTime);
 
   return <Badge variant={variant}>{text}</Badge>;
 }
@@ -217,35 +224,38 @@ function ActivityInfo({
   );
 }
 
-function getBadgeVariant(availability: {
-  currentActivity?: Activity;
-  nextActivity?: Activity[];
-}): "red" | "yellow" | "green" {
+function getBadgeVariant(
+  availability: {
+    currentActivity?: Activity;
+    nextActivity?: Activity[];
+  },
+  currentTime: Date
+): "red" | "yellow" | "green" {
   if (availability.currentActivity) return "red";
   if (
     availability.nextActivity &&
     availability.nextActivity.length > 0 &&
-    availability.nextActivity[0].start.getTime() - new Date().getTime() <=
+    availability.nextActivity[0].start.getTime() - currentTime.getTime() <=
       3600000
   )
     return "yellow";
   return "green";
 }
 
-function getStatusText(availability: {
-  currentActivity?: Activity;
-  nextActivity?: Activity[];
-}): string {
+function getStatusText(
+  availability: { currentActivity?: Activity; nextActivity?: Activity[] },
+  currentTime: Date
+): string {
   if (availability.currentActivity) return "Occupé";
   if (
     availability.nextActivity &&
     availability.nextActivity.length > 0 &&
-    availability.nextActivity[0].start.getTime() - new Date().getTime() <=
+    availability.nextActivity[0].start.getTime() - currentTime.getTime() <=
       3600000
   ) {
     const nextActivity = availability.nextActivity[0];
     const minutesUntilNext = Math.round(
-      (nextActivity.start.getTime() - new Date().getTime()) / 60000
+      (nextActivity.start.getTime() - currentTime.getTime()) / 60000
     );
     return `Libre encrore ${minutesUntilNext} minute${
       minutesUntilNext > 1 ? "s" : ""

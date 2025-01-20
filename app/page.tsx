@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { FloorSelector } from "@/components/floor-selector";
 import { ActivityPanel } from "@/components/activity-panel";
 import { Separator } from "@/components/ui/separator";
@@ -16,6 +16,12 @@ export default function Page() {
   const { eventList, isLoading, error, refresh } = usePlanning();
   const roomList = useMemo(() => Location as LocationInterface[], []);
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleRoomClick = useCallback((roomKey: string) => {
     setSelectedRoom((prevSelected) =>
@@ -29,15 +35,15 @@ export default function Page() {
   );
 
   const floorActivities = useMemo(
-    () => getFloorActivity(currentFloorRooms, eventList),
-    [currentFloorRooms, eventList]
+    () => getFloorActivity(currentFloorRooms, eventList, currentTime),
+    [currentFloorRooms, eventList, currentTime]
   );
 
   return (
     <div className="min-h-screen bg-background">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 h-screen">
         <div className="lg:col-span-4 flex flex-col gap-6 min-h-0">
-          <Header />
+          <Header currentTime={currentTime} />
           <Separator className="w-full" />
           <ActivityPanel
             activities={floorActivities}
@@ -46,6 +52,7 @@ export default function Page() {
             refresh={refresh}
             selectedRoom={selectedRoom}
             onRoomClick={handleRoomClick}
+            currentTime={currentTime}
           />
           <FloorSelector
             currentFloor={currentFloor}
@@ -64,6 +71,7 @@ export default function Page() {
             error={error}
             activities={floorActivities}
             onRoomClick={handleRoomClick}
+            currentTime={currentTime}
           />
         </div>
       </div>
@@ -73,18 +81,20 @@ export default function Page() {
 
 function getFloorActivity(
   roomList: LocationInterface[],
-  activities: Activity[]
+  activities: Activity[],
+  currentTime: Date
 ): (LocationInterface & {
   availability: { currentActivity?: Activity; nextActivity?: Activity[] };
 })[] {
-  const now = new Date();
   return roomList.map((room) => {
     const events = activities.filter(
       (activity) => activity.roomCode === room.key
     );
-    const currentActivity = events.find((e) => now >= e.start && now < e.end);
+    const currentActivity = events.find(
+      (e) => currentTime >= e.start && currentTime < e.end
+    );
     const nextActivity = events
-      .filter((e) => e.start > now)
+      .filter((e) => e.start > currentTime)
       .sort((a, b) => a.start.getTime() - b.start.getTime());
     return {
       ...room,

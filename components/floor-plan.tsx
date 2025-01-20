@@ -19,6 +19,7 @@ interface FloorPlanProps {
     };
   })[];
   onRoomClick?: (roomKey: string) => void;
+  currentTime: Date;
 }
 
 export function FloorPlan({
@@ -27,6 +28,7 @@ export function FloorPlan({
   error,
   activities,
   onRoomClick,
+  currentTime,
 }: FloorPlanProps) {
   const { theme } = useTheme();
   const lineColor = theme === "dark" ? "#ffffff" : "#1a1a1a";
@@ -50,7 +52,7 @@ export function FloorPlan({
       room.availability?.nextActivity &&
       room.availability.nextActivity.length > 0 &&
       room.availability.nextActivity[0].start.getTime() -
-        new Date().getTime() <=
+        currentTime.getTime() <=
         3600000
     ) {
       return "rgb(234, 179, 8)";
