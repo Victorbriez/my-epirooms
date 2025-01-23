@@ -52,7 +52,6 @@ export default function FloorPlanSVG0({
               fill="grey"
             />
           </g>
-
           <g
             id="B-02-Elliot-Alderson"
             onClick={() =>
@@ -70,7 +69,6 @@ export default function FloorPlanSVG0({
               )}
             />
           </g>
-
           <g
             id="S-01-Stark"
             onClick={() => onRoomClick?.("FR/LIL/Hopital-Militaire/S-01-Stark")}
@@ -84,7 +82,6 @@ export default function FloorPlanSVG0({
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-01-Stark")}
             />
           </g>
-
           <g
             id="S-02-Pru-Ha"
             onClick={() =>
@@ -107,7 +104,6 @@ export default function FloorPlanSVG0({
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-02-Pru-Ha")}
             />
           </g>
-
           <g
             id="S-03-Mei-Hatsume"
             onClick={() =>
@@ -123,52 +119,64 @@ export default function FloorPlanSVG0({
               fill={getRoomColor("FR/LIL/Hopital-Militaire/S-03-Mei-Hatsume")}
             />
           </g>
-
-          <g
-            id="S-26-Rdireveltn"
-            onClick={() =>
-              onRoomClick?.("FR/LIL/Hopital-Militaire/S-26-Rdireveltn")
-            }
-            style={{ cursor: "pointer" }}
-          >
-            <rect
-              x="800"
-              y="300"
-              width="120"
-              height="160"
-              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-26-Rdireveltn")}
-            />
-            <path
-              d="M 820 460 L 920 460 L 920 470 L 820 470 L 820 460 Z"
-              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-26-Rdireveltn")}
-            />
-            <rect
-              x="850"
-              y="250"
-              width="80"
-              height="100"
-              transform="rotate(10,890,300)"
-              fill={getRoomColor("FR/LIL/Hopital-Militaire/S-26-Rdireveltn")}
-            />
-          </g>
           <g
             id="room-labels"
             className="text-[16px]"
             style={{ fontFamily: "Helvetica", cursor: "pointer" }}
           >
-            <text x="50" y="73" textAnchor="middle" fill={Color}>
+            <text
+              x="50"
+              y="73"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/B-02-Elliot-Alderson")
+              }
+            >
               Elliot
             </text>
-            <text x="50" y="97" textAnchor="middle" fill={Color}>
+            <text
+              x="50"
+              y="97"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/B-02-Elliot-Alderson")
+              }
+            >
               Alderson
             </text>
-            <text x="305" y="220" textAnchor="middle" fill={Color}>
+            <text
+              x="305"
+              y="220"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-01-Stark")
+              }
+            >
               Stark
             </text>
-            <text x="200" y="530" textAnchor="middle" fill={Color}>
+            <text
+              x="200"
+              y="530"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-02-Pru-Ha")
+              }
+            >
               Pru&apos;Ha
             </text>
-            <text x="490" y="530" textAnchor="middle" fill={Color}>
+            <text
+              x="490"
+              y="530"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-03-Mei-Hatsume")
+              }
+            >
               Mei Hatsume
             </text>
           </g>
