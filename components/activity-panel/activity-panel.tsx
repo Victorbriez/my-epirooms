@@ -81,11 +81,11 @@ export function ActivityPanel({
               "hover:bg-gray-100 dark:hover:bg-gray-800",
               selectedRoom === room.key
                 ? room.availability.currentActivity
-                  ? "border-red-300 dark:border-red-300"
+                  ? "border-red-200 dark:border-red-200"
                   : room.availability.nextActivity &&
                     room.availability.nextActivity.length > 0
-                  ? "border-yellow-300 dark:border-yellow-300"
-                  : "border-green-300 dark:border-green-300"
+                  ? "border-yellow-200 dark:border-yellow-200"
+                  : "border-green-200 dark:border-green-200"
                 : "border-border"
             )}
             onClick={() => onRoomClick(room.key)}

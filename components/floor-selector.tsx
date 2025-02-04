@@ -34,7 +34,7 @@ export function FloorSelector({
           variant={currentFloor === floor.id ? "default" : "outline"}
           className={cn(
             "flex-1",
-            currentFloor === floor.id && "bg-primary text-primary-foreground",
+            currentFloor === floor.id && "bg-foreground text-primary-foreground",
           )}
           onClick={() => onFloorChange(floor.id)}
           disabled={isLoading}

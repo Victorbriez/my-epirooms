@@ -16,9 +16,9 @@ export function StatusBadge({ availability, currentTime }: StatusBadgeProps) {
     <span
       className={cn(
         "px-2 py-1 rounded-full text-xs font-medium",
-        variant === "green" && "bg-green-100 text-green-800",
-        variant === "yellow" && "bg-yellow-100 text-yellow-800",
-        variant === "red" && "bg-red-100 text-red-800"
+        variant === "green" && "bg-green-200 text-green-800",
+        variant === "yellow" && "bg-yellow-200 text-yellow-800",
+        variant === "red" && "bg-red-200 text-red-800"
       )}
     >
       {variant === "green" && "Disponible"}

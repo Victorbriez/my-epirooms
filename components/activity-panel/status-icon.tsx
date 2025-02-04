@@ -15,12 +15,12 @@ export function StatusIcon({ availability, currentTime }: StatusIconProps) {
   return (
     <>
       {variant === "green" && (
-        <CheckCircle className="w-4 h-4 text-green-500" />
+        <CheckCircle className="w-4 h-4 text-green-200" />
       )}
       {variant === "yellow" && (
-        <AlertCircle className="w-4 h-4 text-yellow-500" />
+        <AlertCircle className="w-4 h-4 text-yellow-200" />
       )}
-      {variant === "red" && <XCircle className="w-4 h-4 text-red-500" />}
+      {variant === "red" && <XCircle className="w-4 h-4 text-red-200" />}
     </>
   );
 }
