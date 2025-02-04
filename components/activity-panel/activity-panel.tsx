@@ -5,14 +5,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import type { Activity } from "@/models/Activity";
-import { CheckCircle, XCircle, AlertCircle } from "lucide-react";
-import type { LocationInterface } from "@/types/LocationInterface";
-import { cn, getBadgeVariant } from "@/lib/utils";
 import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
-import { StatusBadge } from "@/components/activity-panel/status-badge";
-import { DailyActivities } from "@/components/activity-panel/daily-activities";
+import type { Activity } from "@/models/Activity";
+import type { LocationInterface } from "@/types/LocationInterface";
+import { cn } from "@/lib/utils";
 import { ActivityInfo } from "@/components/activity-panel/activity-info";
+import { DailyActivities } from "@/components/activity-panel/daily-activities";
+import { StatusBadge } from "@/components/activity-panel/status-badge";
+import { StatusIcon } from "@/components/activity-panel/status-icon";
 import { ActivityPanelSkeleton } from "@/components/activity-panel/activity-panel-skeleton";
 
 interface ActivityPanelProps {
@@ -73,7 +73,6 @@ export function ActivityPanel({
         {activities.map((room) => (
           <Card
             key={room.key}
-            aria-label={`Salle ${room.title}`}
             ref={(el) => {
               roomRefs.current[room.key] = el;
             }}
@@ -81,24 +80,24 @@ export function ActivityPanel({
               "overflow-hidden border-2 transition-colors cursor-pointer",
               "hover:bg-gray-100 dark:hover:bg-gray-800",
               selectedRoom === room.key
-                ? "border-blue-500 dark:border-blue-400"
-                : "border-gray-200 dark:border-gray-700"
+                ? room.availability.currentActivity
+                  ? "border-red-300 dark:border-red-300"
+                  : room.availability.nextActivity &&
+                    room.availability.nextActivity.length > 0
+                  ? "border-yellow-300 dark:border-yellow-300"
+                  : "border-green-300 dark:border-green-300"
+                : "border-border"
             )}
             onClick={() => onRoomClick(room.key)}
           >
-            <CardHeader className="p-4">
-              <div className="flex items-center justify-between gap-4">
+            <CardHeader className="p-3">
+              <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  {getBadgeVariant(room.availability, currentTime) ===
-                  "green" ? (
-                    <CheckCircle className="w-5 h-5 text-green-500" />
-                  ) : getBadgeVariant(room.availability, currentTime) ===
-                    "yellow" ? (
-                    <AlertCircle className="w-5 h-5 text-yellow-500" />
-                  ) : (
-                    <XCircle className="w-5 h-5 text-red-500" />
-                  )}
-                  <CardTitle className="text-lg font-medium line-clamp-1">
+                  <StatusIcon
+                    availability={room.availability}
+                    currentTime={currentTime}
+                  />
+                  <CardTitle className="text-base font-medium line-clamp-1">
                     {room.title}
                   </CardTitle>
                 </div>
@@ -108,11 +107,9 @@ export function ActivityPanel({
                 />
               </div>
             </CardHeader>
-            <CardContent className="p-4 pt-0">
+            <CardContent className="p-3 pt-0">
               <Collapsible open={selectedRoom === room.key}>
-                <div className="w-full">
-                  <ActivityInfo activities={room.availability} />
-                </div>
+                <ActivityInfo activities={room.availability} />
                 <CollapsibleContent className="transition-all duration-300 ease-in-out">
                   {selectedRoom === room.key && (
                     <DailyActivities

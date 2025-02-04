@@ -1,6 +1,6 @@
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { getBadgeVariant } from "@/lib/utils";
 import type { Activity } from "@/models/Activity";
-import { getBadgeVariant, getStatusText } from "@/lib/utils";
 
 interface StatusBadgeProps {
   availability: {
@@ -12,7 +12,18 @@ interface StatusBadgeProps {
 
 export function StatusBadge({ availability, currentTime }: StatusBadgeProps) {
   const variant = getBadgeVariant(availability, currentTime);
-  const text = getStatusText(availability, currentTime);
-
-  return <Badge variant={variant}>{text}</Badge>;
+  return (
+    <span
+      className={cn(
+        "px-2 py-1 rounded-full text-xs font-medium",
+        variant === "green" && "bg-green-100 text-green-800",
+        variant === "yellow" && "bg-yellow-100 text-yellow-800",
+        variant === "red" && "bg-red-100 text-red-800"
+      )}
+    >
+      {variant === "green" && "Disponible"}
+      {variant === "yellow" && "Bientôt occupé"}
+      {variant === "red" && "Occupé"}
+    </span>
+  );
 }
