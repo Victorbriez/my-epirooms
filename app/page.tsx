@@ -2,14 +2,14 @@
 
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { FloorSelector } from "@/components/floor-selector";
-import { ActivityPanel } from "@/components/activity-panel";
+import { ActivityPanel } from "@/components/activity-panel/activity-panel";
 import { Separator } from "@/components/ui/separator";
 import { usePlanning } from "@/hooks/usePlanning";
-import { LocationInterface } from "@/types/LocationInterface";
+import type { LocationInterface } from "@/types/LocationInterface";
 import Location from "@/location.json";
 import { Header } from "@/components/Header";
 import { FloorPlan } from "@/components/floor-plan";
-import { Activity } from "@/models/Activity";
+import type { Activity } from "@/models/Activity";
 
 export default function Page() {
   const [currentFloor, setCurrentFloor] = useState(1);
