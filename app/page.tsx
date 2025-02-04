@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { FloorSelector } from "@/components/floor-selector";
-import { ActivityPanel } from "@/components/activity-panel";
+import { ActivityPanel } from "@/components/activity-panel/activity-panel";
 import { Separator } from "@/components/ui/separator";
 import { usePlanning } from "@/hooks/usePlanning";
 import type { LocationInterface } from "@/types/LocationInterface";
