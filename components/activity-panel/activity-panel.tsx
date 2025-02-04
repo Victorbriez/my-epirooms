@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import type { Activity } from "@/models/Activity";
-import { Calendar, CheckCircle, XCircle, AlertCircle } from "lucide-react";
+import { CheckCircle, XCircle, AlertCircle } from "lucide-react";
 import type { LocationInterface } from "@/types/LocationInterface";
 import { cn, getBadgeVariant } from "@/lib/utils";
 import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
@@ -111,23 +111,7 @@ export function ActivityPanel({
             <CardContent className="p-4 pt-0">
               <Collapsible open={selectedRoom === room.key}>
                 <div className="w-full">
-                  {room.availability.currentActivity ? (
-                    <ActivityInfo
-                      activity={room.availability.currentActivity}
-                      type="current"
-                    />
-                  ) : room.availability.nextActivity &&
-                    room.availability.nextActivity.length > 0 ? (
-                    <ActivityInfo
-                      activity={room.availability.nextActivity[0]}
-                      type="next"
-                    />
-                  ) : (
-                    <p className="text-sm text-muted-foreground font-medium flex items-center">
-                      <Calendar className="w-4 h-4 mr-2 flex-shrink-0" />
-                      <span>Libre pour le reste de la journée</span>
-                    </p>
-                  )}
+                  <ActivityInfo activities={room.availability} />
                 </div>
                 <CollapsibleContent className="transition-all duration-300 ease-in-out">
                   {selectedRoom === room.key && (

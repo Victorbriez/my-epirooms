@@ -1,4 +1,4 @@
-import { Clock } from "lucide-react";
+import { Clock, Calendar } from "lucide-react";
 import type { Activity } from "@/models/Activity";
 
 interface DailyActivitiesProps {
@@ -6,16 +6,12 @@ interface DailyActivitiesProps {
 }
 
 export function DailyActivities({ activities }: DailyActivitiesProps) {
-  const displayedActivities = activities.slice(1);
-
   return (
     <div className="mt-4 space-y-3">
-      <h4 className="font-medium text-sm text-primary">
-        Activités de la journée:
-      </h4>
-      {displayedActivities.length > 0 ? (
+      <h4 className="font-medium text-sm text-primary">Activités à venir:</h4>
+      {activities.length > 0 ? (
         <div className="space-y-2">
-          {displayedActivities.map((activity, index) => (
+          {activities.map((activity, index) => (
             <div
               key={index}
               className="text-sm space-y-1 bg-secondary/10 p-2 rounded-md transition-colors hover:bg-secondary/20"
@@ -49,9 +45,12 @@ export function DailyActivities({ activities }: DailyActivitiesProps) {
           ))}
         </div>
       ) : (
-        <p className="text-sm text-muted-foreground font-medium bg-secondary/10 p-2 rounded-md">
-          Aucune activité prévue pour le reste de la journée.
-        </p>
+        <div className="flex items-center gap-2 text-md bg-secondary/10 p-2 rounded-md">
+          <Calendar className="w-4 h-4 flex-shrink-0" />
+          <p className="font-medium leading-tight flex-shrink min-w-0 truncate">
+            Libre pour le reste de la journée
+          </p>
+        </div>
       )}
     </div>
   );
