@@ -220,31 +220,103 @@ export default function FloorPlanSVG2({
             className="text-[16px]"
             style={{ fontFamily: "Helvetica", cursor: "pointer" }}
           >
-            <text x="103" y="223" textAnchor="middle" fill={Color}>
+            <text
+              x="103"
+              y="223"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-21a-Denis")
+              }
+            >
               Denis
             </text>
-            <text x="97" y="436" textAnchor="middle" fill={Color}>
+            <text
+              x="97"
+              y="436"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-21b-MacAlistair")
+              }
+            >
               MacAlistair
             </text>
-            <text x="311" y="439" textAnchor="middle" fill={Color}>
+            <text
+              x="311"
+              y="439"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-21c-Ritchie")
+              }
+            >
               Ritchie
             </text>
-            <text x="163" y="692" textAnchor="middle" fill={Color}>
+            <text
+              x="163"
+              y="692"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-22-Ada-Lovelace")
+              }
+            >
               Ada Lovelace
             </text>
-            <text x="618" y="697" textAnchor="middle" fill={Color}>
+            <text
+              x="618"
+              y="697"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-23a-Hedy-Lamarr")
+              }
+            >
               Hedy Lamarr
             </text>
-            <text x="790" y="698" textAnchor="middle" fill={Color}>
+            <text
+              x="790"
+              y="698"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-23b-Al-Jazari")
+              }
+            >
               Al Jazari
             </text>
-            <text x="907" y="298" textAnchor="middle" fill={Color}>
+            <text
+              x="907"
+              y="298"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")
+              }
+            >
               Roland Moreno
             </text>
-            <text x="1143" y="476" textAnchor="middle" fill={Color}>
+            <text
+              x="1143"
+              y="476"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-25b-Barzey")
+              }
+            >
               Barzey
             </text>
-            <text x="1063" y="278" textAnchor="middle" fill={Color}>
+            <text
+              x="1063"
+              y="278"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-25a-Gwen")
+              }
+            >
               Gwen
             </text>
           </g>

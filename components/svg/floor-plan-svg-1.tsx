@@ -160,22 +160,70 @@ export default function FloorPlanSVG1({
             className="text-[16px]"
             style={{ fontFamily: "Helvetica", cursor: "pointer" }}
           >
-            <text x="105" y="225" textAnchor="middle" fill={Color}>
+            <text
+              x="105"
+              y="225"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-11-Microtech")
+              }
+            >
               Microtech
             </text>
-            <text x="205" y="690" textAnchor="middle" fill={Color}>
+            <text
+              x="205"
+              y="690"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-12-Pandora")
+              }
+            >
               Pandora
             </text>
-            <text x="1045" y="260" textAnchor="middle" fill={Color}>
+            <text
+              x="1045"
+              y="260"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/S-14-Poudlard")
+              }
+            >
               Poudlard
             </text>
-            <text x="50" y="470" textAnchor="middle" fill={Color}>
+            <text
+              x="50"
+              y="470"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/O-12-Arrakis")
+              }
+            >
               Arrakis
             </text>
-            <text x="1145" y="440" textAnchor="middle" fill={Color}>
+            <text
+              x="1145"
+              y="440"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/B-15-Krikkit")
+              }
+            >
               Krikkit
             </text>
-            <text x="1165" y="540" textAnchor="middle" fill={Color}>
+            <text
+              x="1165"
+              y="540"
+              textAnchor="middle"
+              fill={Color}
+              onClick={() =>
+                onRoomClick?.("FR/LIL/Hopital-Militaire/B-14-La-Matrice")
+              }
+            >
               La Matrice
             </text>
           </g>

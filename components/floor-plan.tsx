@@ -5,8 +5,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import FloorPlanSVG0 from "@/components/svg/floor-plan-svg-0";
 import FloorPlanSVG1 from "@/components/svg/floor-plan-svg-1";
 import FloorPlanSVG2 from "@/components/svg/floor-plan-svg-2";
-import { Activity } from "@/models/Activity";
-import { LocationInterface } from "@/types/LocationInterface";
+import type { Activity } from "@/models/Activity";
+import type { LocationInterface } from "@/types/LocationInterface";
+import { getBadgeVariant } from "@/lib/utils";
 
 interface FloorPlanProps {
   currentFloor: number;
@@ -45,19 +46,18 @@ export function FloorPlan({
     const room = activities.find((room) => room.key === roomKey);
     if (!room) return "transparent";
 
-    if (room.availability?.currentActivity) {
-      return "rgb(239, 68, 68)";
+    const variant = getBadgeVariant(room.availability, currentTime);
+
+    switch (variant) {
+      case "red":
+        return "rgb(239, 68, 68)";
+      case "yellow":
+        return "rgb(234, 179, 8)";
+      case "green":
+        return "rgb(34 197 94)";
+      default:
+        return "transparent";
     }
-    if (
-      room.availability?.nextActivity &&
-      room.availability.nextActivity.length > 0 &&
-      room.availability.nextActivity[0].start.getTime() -
-        currentTime.getTime() <=
-        3600000
-    ) {
-      return "rgb(234, 179, 8)";
-    }
-    return "rgb(34, 197, 94)";
   };
 
   const svgProps = {

@@ -1,49 +1,64 @@
 import { Clock, Calendar } from "lucide-react";
 import type { Activity } from "@/models/Activity";
-import { Separator } from "@/components/ui/separator";
 
 interface ActivityInfoProps {
   activities: {
     currentActivity?: Activity;
+    nextActivity?: Activity[];
   };
 }
 
 export function ActivityInfo({ activities }: ActivityInfoProps) {
-  const { currentActivity } = activities;
+  const { currentActivity, nextActivity } = activities;
+
+  const calculateTimeDifference = (start: Date) => {
+    const now = new Date();
+    const diff = start.getTime() - now.getTime();
+    const minutes = Math.floor(diff / 6000);
+    const hours = Math.floor(minutes / 60);
+    return { hours, minutes: minutes % 60 };
+  };
 
   return (
     <div className="space-y-3">
-      <p className="font-medium text-sm text-primary">Activité en cours:</p>
       {currentActivity ? (
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 text-md bg-primary/5 p-4 rounded-lg">
-          <h3 className="font-medium leading-tight flex-shrink min-w-0 truncate">
-            {currentActivity.title}
-          </h3>
-          <div className="flex items-center self-stretch">
-            <Separator
-              orientation="vertical"
-              className="hidden sm:block h-6 mx-2"
-            />
-            <div className="flex items-center gap-2">
+        <div className="bg-red-200 p-3 rounded-lg shadow-sm">
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-semibold text-red-800">
+              {currentActivity.title}
+            </h3>
+            <div className="flex items-center gap-1 text-red-800">
               <Clock className="w-4 h-4 flex-shrink-0" />
-              <p className="text-muted-foreground font-medium text-sm sm:text-base">
-                <span className="tabular-nums">
-                  Jusqu&apos;à{" "}
-                  <time dateTime={currentActivity.end.toISOString()}>
-                    {currentActivity.end.toLocaleTimeString("fr-FR", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </time>
-                </span>
+              <p className="text-sm">
+                Jusqu&apos;à{" "}
+                <time
+                  dateTime={currentActivity.end.toISOString()}
+                  className="font-semibold"
+                >
+                  {currentActivity.end.toLocaleTimeString("fr-FR", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </time>
               </p>
             </div>
           </div>
         </div>
+      ) : nextActivity && nextActivity.length > 0 ? (
+        <div className="flex items-center gap-2 bg-yellow-200 p-3 rounded-lg shadow-sm">
+          <Clock className="w-4 h-4 flex-shrink-0 text-yellow-800" />
+          <p className="text-sm font-medium text-yellow-800">
+            Prochaine activité dans{" "}
+            {(() => {
+              const { hours, minutes } = calculateTimeDifference(nextActivity[0].start);
+              return `${hours}h ${minutes}m`;
+            })()}
+          </p>
+        </div>
       ) : (
-        <div className="flex items-center gap-2 text-md bg-primary/5 p-4 rounded-lg">
-          <Calendar className="w-4 h-4 flex-shrink-0" />
-          <p className="font-medium leading-tight flex-shrink min-w-0 truncate">
+        <div className="flex items-center gap-2 bg-green-200 p-3 rounded-lg shadow-sm">
+          <Calendar className="w-4 h-4 flex-shrink-0 text-green-800" />
+          <p className="text-sm font-medium text-green-800">
             Libre pour le reste de la journée
           </p>
         </div>
