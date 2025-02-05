@@ -41,10 +41,13 @@ export function ActivityInfo({ activities, currentTime }: ActivityInfoProps) {
               <h3 className="text-base font-semibold text-red-800">
                 {currentActivity.title}
               </h3>
-              <p className="text-sm text-red-700 mt-1">
-                {formatTime(currentActivity.start)} -{" "}
-                {formatTime(currentActivity.end)}
-              </p>
+              <div className="flex items-center gap-1 mt-1">
+                <Clock className="w-4 h-4 flex-shrink-0 text-red-700" />
+                <p className="text-sm text-red-700">
+                  {formatTime(currentActivity.start)} -{" "}
+                  {formatTime(currentActivity.end)}
+                </p>
+              </div>
             </div>
             <div className="flex items-center gap-1 text-red-800">
               <Clock className="w-4 h-4 flex-shrink-0" />
@@ -69,10 +72,13 @@ export function ActivityInfo({ activities, currentTime }: ActivityInfoProps) {
               <h3 className="text-base font-semibold text-yellow-800">
                 {nextActivity[0].title}
               </h3>
-              <p className="text-sm text-yellow-700 mt-1">
-                {formatTime(nextActivity[0].start)} -{" "}
-                {formatTime(nextActivity[0].end)}
-              </p>
+              <div className="flex items-center gap-1 mt-1">
+                <Clock className="w-4 h-4 flex-shrink-0 text-yellow-700" />
+                <p className="text-sm text-yellow-700">
+                  {formatTime(nextActivity[0].start)} -{" "}
+                  {formatTime(nextActivity[0].end)}
+                </p>
+              </div>
             </div>
             <div className="flex items-center gap-1 text-yellow-800">
               <Clock className="w-4 h-4 flex-shrink-0" />
@@ -95,10 +101,13 @@ export function ActivityInfo({ activities, currentTime }: ActivityInfoProps) {
               <h3 className="text-base font-semibold text-green-800">
                 {nextActivity[0].title}
               </h3>
-              <p className="text-sm text-green-700 mt-1">
-                {formatTime(nextActivity[0].start)} -{" "}
-                {formatTime(nextActivity[0].end)}
-              </p>
+              <div className="flex items-center gap-1 mt-1">
+                <Clock className="w-4 h-4 flex-shrink-0 text-green-700" />
+                <p className="text-sm text-green-700">
+                  {formatTime(nextActivity[0].start)} -{" "}
+                  {formatTime(nextActivity[0].end)}
+                </p>
+              </div>
             </div>
             <div className="flex items-center gap-1 text-green-800">
               <Clock className="w-4 h-4 flex-shrink-0" />
