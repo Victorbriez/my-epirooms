@@ -164,7 +164,7 @@ export default function FloorPlanSVG1({
               x="105"
               y="225"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-11-Microtech")
               }
@@ -175,7 +175,7 @@ export default function FloorPlanSVG1({
               x="205"
               y="690"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-12-Pandora")
               }
@@ -186,7 +186,7 @@ export default function FloorPlanSVG1({
               x="1045"
               y="260"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-14-Poudlard")
               }
@@ -197,7 +197,7 @@ export default function FloorPlanSVG1({
               x="50"
               y="470"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/O-12-Arrakis")
               }
@@ -208,7 +208,7 @@ export default function FloorPlanSVG1({
               x="1145"
               y="440"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/B-15-Krikkit")
               }
@@ -219,7 +219,7 @@ export default function FloorPlanSVG1({
               x="1165"
               y="540"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/B-14-La-Matrice")
               }
@@ -232,13 +232,13 @@ export default function FloorPlanSVG1({
             className="text-[16px]"
             style={{ fontFamily: "Helvetica", cursor: "default" }}
           >
-            <text x="765" y="700" textAnchor="middle" fill={Color}>
+            <text x="765" y="700" textAnchor="middle" fill={"#1a1a1a"}>
               Kaer Morhen
             </text>
-            <text x="495" y="690" textAnchor="middle" fill={Color}>
+            <text x="495" y="690" textAnchor="middle" fill={"#1a1a1a"}>
               Gallifrey
             </text>
-            <text x="630" y="702" textAnchor="middle" fill={Color}>
+            <text x="630" y="702" textAnchor="middle" fill={"#1a1a1a"}>
               Continental
             </text>
           </g>

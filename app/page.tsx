@@ -41,8 +41,8 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 h-screen">
-        <div className="lg:col-span-4 flex flex-col gap-6 min-h-0">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 p-4 lg:p-6 h-screen">
+        <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-4 lg:gap-6 min-h-0">
           <Header currentTime={currentTime} />
           <Separator className="w-full" />
           <ActivityPanel
@@ -61,10 +61,10 @@ export default function Page() {
             isLoading={isLoading}
           />
         </div>
-        <div className="hidden lg:flex items-center">
+        <div className="hidden lg:flex items-center lg:col-span-1">
           <Separator orientation="vertical" className="h-full" />
         </div>
-        <div className="hidden lg:block lg:col-span-7 bg-background rounded-lg shadow-sm overflow-hidden relative">
+        <div className="hidden lg:block lg:col-span-6 xl:col-span-7 bg-background rounded-lg shadow-sm overflow-hidden relative">
           <FloorPlan
             currentFloor={currentFloor}
             isLoading={isLoading}

@@ -77,13 +77,16 @@ export function ActivityPanel({
               roomRefs.current[room.key] = el;
             }}
             className={cn(
-              "overflow-hidden border-2 transition-colors cursor-pointer",
+              "overflow-hidden border-2 cursor-pointer",
               "hover:bg-gray-100 dark:hover:bg-gray-800",
               selectedRoom === room.key
                 ? room.availability.currentActivity
                   ? "border-red-200 dark:border-red-200"
                   : room.availability.nextActivity &&
-                    room.availability.nextActivity.length > 0
+                    room.availability.nextActivity.length > 0 &&
+                    room.availability.nextActivity[0].start.getTime() -
+                      currentTime.getTime() <=
+                      3600000
                   ? "border-yellow-200 dark:border-yellow-200"
                   : "border-green-200 dark:border-green-200"
                 : "border-border"
@@ -109,7 +112,10 @@ export function ActivityPanel({
             </CardHeader>
             <CardContent className="p-3 pt-0">
               <Collapsible open={selectedRoom === room.key}>
-                <ActivityInfo activities={room.availability} />
+                <ActivityInfo
+                  activities={room.availability}
+                  currentTime={currentTime}
+                />
                 <CollapsibleContent className="transition-all duration-300 ease-in-out">
                   {selectedRoom === room.key && (
                     <DailyActivities

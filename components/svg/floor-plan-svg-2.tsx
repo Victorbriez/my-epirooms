@@ -224,7 +224,7 @@ export default function FloorPlanSVG2({
               x="103"
               y="223"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-21a-Denis")
               }
@@ -235,7 +235,7 @@ export default function FloorPlanSVG2({
               x="97"
               y="436"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-21b-MacAlistair")
               }
@@ -246,7 +246,7 @@ export default function FloorPlanSVG2({
               x="311"
               y="439"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-21c-Ritchie")
               }
@@ -257,7 +257,7 @@ export default function FloorPlanSVG2({
               x="163"
               y="692"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-22-Ada-Lovelace")
               }
@@ -268,7 +268,7 @@ export default function FloorPlanSVG2({
               x="618"
               y="697"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-23a-Hedy-Lamarr")
               }
@@ -279,7 +279,7 @@ export default function FloorPlanSVG2({
               x="790"
               y="698"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-23b-Al-Jazari")
               }
@@ -290,7 +290,7 @@ export default function FloorPlanSVG2({
               x="907"
               y="298"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-24-Roland-Moreno")
               }
@@ -301,7 +301,7 @@ export default function FloorPlanSVG2({
               x="1143"
               y="476"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-25b-Barzey")
               }
@@ -312,7 +312,7 @@ export default function FloorPlanSVG2({
               x="1063"
               y="278"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-25a-Gwen")
               }

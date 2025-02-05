@@ -128,7 +128,7 @@ export default function FloorPlanSVG0({
               x="50"
               y="73"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/B-02-Elliot-Alderson")
               }
@@ -139,7 +139,7 @@ export default function FloorPlanSVG0({
               x="50"
               y="97"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/B-02-Elliot-Alderson")
               }
@@ -150,7 +150,7 @@ export default function FloorPlanSVG0({
               x="305"
               y="220"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-01-Stark")
               }
@@ -161,7 +161,7 @@ export default function FloorPlanSVG0({
               x="200"
               y="530"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-02-Pru-Ha")
               }
@@ -172,7 +172,7 @@ export default function FloorPlanSVG0({
               x="490"
               y="530"
               textAnchor="middle"
-              fill={Color}
+              fill={"#1a1a1a"}
               onClick={() =>
                 onRoomClick?.("FR/LIL/Hopital-Militaire/S-03-Mei-Hatsume")
               }
@@ -185,7 +185,7 @@ export default function FloorPlanSVG0({
             className="text-[16px]"
             style={{ fontFamily: "Helvetica", cursor: "default" }}
           >
-            <text x="305" y="60" textAnchor="middle" fill={Color}>
+            <text x="305" y="60" textAnchor="middle" fill={"#1a1a1a"}>
               Bulma
             </text>
           </g>
