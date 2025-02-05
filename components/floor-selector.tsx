@@ -27,31 +27,38 @@ export function FloorSelector({
   ];
 
   return (
-    <Card className="flex gap-4 p-4 rounded-lg">
-      {floors.map((floor) => (
-        <Button
-          key={floor.id}
-          variant={currentFloor === floor.id ? "default" : "outline"}
-          className={cn(
-            "flex-1",
-            currentFloor === floor.id && "bg-foreground text-primary-foreground",
-          )}
-          onClick={() => onFloorChange(floor.id)}
-          disabled={isLoading}
-        >
-          {floor.label}
-        </Button>
-      ))}
-      <Separator orientation="vertical" />
-      <ModeToggle />
-      <Button
-        variant="outline"
-        onClick={refresh}
-        size="icon"
-        disabled={isLoading}
-      >
-        <RefreshCcw />
-      </Button>
+    <Card className="p-2 sm:p-4 rounded-lg">
+      <div className="flex flex-wrap gap-4 sm:gap-4">
+        <div className="flex flex-grow gap-1 sm:gap-2">
+          {floors.map((floor) => (
+            <Button
+              key={floor.id}
+              variant={currentFloor === floor.id ? "default" : "outline"}
+              className={cn(
+                "flex-1 px-2 sm:px-4",
+                currentFloor === floor.id &&
+                  "bg-foreground text-primary-foreground"
+              )}
+              onClick={() => onFloorChange(floor.id)}
+              disabled={isLoading}
+            >
+              {floor.label}
+            </Button>
+          ))}
+        </div>
+        <div className="flex items-center gap-4">
+          <Separator orientation="vertical" className="hidden sm:block" />
+          <ModeToggle />
+          <Button
+            variant="outline"
+            onClick={refresh}
+            size="icon"
+            disabled={isLoading}
+          >
+            <RefreshCcw className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
     </Card>
   );
 }
