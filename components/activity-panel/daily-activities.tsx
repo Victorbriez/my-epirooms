@@ -11,9 +11,9 @@ export function DailyActivities({ activities }: DailyActivitiesProps) {
       <h4 className="font-medium text-sm text-foreground">
         Activités à venir:
       </h4>
-      {activities.length > 1 ? (
+      {activities.length > 0 ? (
         <div className="space-y-2">
-          {activities.slice(1).map((activity, index) => (
+          {activities.map((activity, index) => (
             <div
               key={index}
               className="text-sm bg-secondary/10 p-2 rounded-md transition-colors hover:bg-secondary/20"
