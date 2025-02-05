@@ -50,11 +50,11 @@ export function FloorPlan({
 
     switch (variant) {
       case "red":
-        return "rgb(239, 68, 68)";
+        return "rgb(254, 202, 202)";
       case "yellow":
-        return "rgb(234, 179, 8)";
+        return "rgb(254, 240, 138)";
       case "green":
-        return "rgb(34 197 94)";
+        return "rgb(187, 247, 208)";
       default:
         return "transparent";
     }
