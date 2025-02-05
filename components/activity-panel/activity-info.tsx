@@ -19,26 +19,42 @@ export function ActivityInfo({ activities, currentTime }: ActivityInfoProps) {
     return { hours, minutes };
   };
 
+  const formatTimeDifference = (start: Date) => {
+    const { hours, minutes } = calculateTimeDifference(start);
+    if (hours === 0) return `${minutes}m`;
+    return `${hours}h ${minutes}m`;
+  };
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString("fr-FR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
   return (
     <div className="space-y-3">
       {currentActivity ? (
         <div className="bg-red-200 p-3 rounded-lg shadow-sm">
           <div className="flex items-center justify-between">
-            <h3 className="text-base font-semibold text-red-800">
-              {currentActivity.title}
-            </h3>
+            <div>
+              <h3 className="text-base font-semibold text-red-800">
+                {currentActivity.title}
+              </h3>
+              <p className="text-sm text-red-700 mt-1">
+                {formatTime(currentActivity.start)} -{" "}
+                {formatTime(currentActivity.end)}
+              </p>
+            </div>
             <div className="flex items-center gap-1 text-red-800">
               <Clock className="w-4 h-4 flex-shrink-0" />
               <p className="text-sm">
-                Jusqu&apos;à{" "}
+                Encore{" "}
                 <time
                   dateTime={currentActivity.end.toISOString()}
                   className="font-semibold"
                 >
-                  {currentActivity.end.toLocaleTimeString("fr-FR", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
+                  {formatTimeDifference(currentActivity.end)}
                 </time>
               </p>
             </div>
@@ -47,40 +63,65 @@ export function ActivityInfo({ activities, currentTime }: ActivityInfoProps) {
       ) : nextActivity &&
         nextActivity.length > 0 &&
         nextActivity[0].start.getTime() - currentTime.getTime() <= 3600000 ? (
-        <div className="flex items-center gap-2 bg-yellow-200 p-3 rounded-lg shadow-sm">
-          <Clock className="w-4 h-4 flex-shrink-0 text-yellow-800" />
-          <p className="text-sm font-medium text-yellow-800">
-            Prochaine activité dans{" "}
-            {(() => {
-              const { hours, minutes } = calculateTimeDifference(
-                nextActivity[0].start
-              );
-              return `${hours}h ${minutes}m`;
-            })()}
-          </p>
+        <div className="bg-yellow-200 p-3 rounded-lg shadow-sm">
+          <div className="flex items-center justify-between gap-2">
+            <div>
+              <h3 className="text-base font-semibold text-yellow-800">
+                {nextActivity[0].title}
+              </h3>
+              <p className="text-sm text-yellow-700 mt-1">
+                {formatTime(nextActivity[0].start)} -{" "}
+                {formatTime(nextActivity[0].end)}
+              </p>
+            </div>
+            <div className="flex items-center gap-1 text-yellow-800">
+              <Clock className="w-4 h-4 flex-shrink-0" />
+              <p className="text-sm">
+                Dans{" "}
+                <time
+                  dateTime={nextActivity[0].start.toISOString()}
+                  className="font-semibold"
+                >
+                  {formatTimeDifference(nextActivity[0].start)}
+                </time>
+              </p>
+            </div>
+          </div>
         </div>
       ) : nextActivity && nextActivity.length > 0 ? (
-        <div className="flex items-center gap-2 bg-green-200 p-3 rounded-lg shadow-sm">
-          <Calendar className="w-4 h-4 flex-shrink-0 text-green-800" />
-          <p className="text-sm font-medium text-green-800">
-            Libre jusqu&apos;à{" "}
-            <time
-              dateTime={nextActivity[0].start.toISOString()}
-              className="font-semibold"
-            >
-              {nextActivity[0].start.toLocaleTimeString("fr-FR", {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </time>
-          </p>
+        <div className="bg-green-200 p-3 rounded-lg shadow-sm">
+          <div className="flex items-center justify-between gap-2">
+            <div>
+              <h3 className="text-base font-semibold text-green-800">
+                {nextActivity[0].title}
+              </h3>
+              <p className="text-sm text-green-700 mt-1">
+                {formatTime(nextActivity[0].start)} -{" "}
+                {formatTime(nextActivity[0].end)}
+              </p>
+            </div>
+            <div className="flex items-center gap-1 text-green-800">
+              <Clock className="w-4 h-4 flex-shrink-0" />
+              <p className="text-sm">
+                Jusqu&apos;à{" "}
+                <time
+                  dateTime={nextActivity[0].start.toISOString()}
+                  className="font-semibold"
+                >
+                  {formatTimeDifference(nextActivity[0].start)}
+                </time>
+              </p>
+            </div>
+          </div>
         </div>
       ) : (
-        <div className="flex items-center gap-2 bg-green-200 p-3 rounded-lg shadow-sm">
-          <Calendar className="w-4 h-4 flex-shrink-0 text-green-800" />
-          <p className="text-sm font-semibold text-green-800">
-            Libre pour le reste de la journée
-          </p>
+        <div className="bg-green-200 p-3 rounded-lg shadow-sm">
+          <div className="flex items-center gap-2 text-green-800">
+            <Calendar className="w-4 h-4 flex-shrink-0" />
+            <p className="text-sm font-semibold">
+              Libre pour le reste de la journée
+            </p>
+          </div>
         </div>
       )}
     </div>
