@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ModeToggle } from "./mode-toggle";
-import { cn } from "@/lib/utils";
 import { RefreshCcw } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
@@ -34,13 +33,9 @@ export function FloorSelector({
             <Button
               key={floor.id}
               variant={currentFloor === floor.id ? "default" : "outline"}
-              className={cn(
-                "flex-1 px-2 sm:px-4",
-                currentFloor === floor.id &&
-                  "bg-foreground text-primary-foreground"
-              )}
               onClick={() => onFloorChange(floor.id)}
               disabled={isLoading}
+              className={"flex-grow"}
             >
               {floor.label}
             </Button>
