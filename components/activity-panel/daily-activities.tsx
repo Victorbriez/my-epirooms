@@ -8,7 +8,7 @@ interface DailyActivitiesProps {
 export function DailyActivities({ activities }: DailyActivitiesProps) {
   return (
     <div className="mt-5">
-      <h4 className="font-medium text-sm text-foreground">
+      <h4 className="font-semibold text-sm text-foreground">
         Activités à venir:
       </h4>
       {activities.length > 0 ? (
