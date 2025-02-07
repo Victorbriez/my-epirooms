@@ -100,7 +100,7 @@ export function ActivityPanel({
                     availability={room.availability}
                     currentTime={currentTime}
                   />
-                  <CardTitle className="text-base font-medium line-clamp-1">
+                  <CardTitle className="font-semibold line-clamp-1">
                     {room.title}
                   </CardTitle>
                 </div>
