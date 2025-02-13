@@ -33,9 +33,9 @@ export function FloorSelector({
             <Button
               key={floor.id}
               variant={currentFloor === floor.id ? "default" : "outline"}
+              className="flex-1 px-2 sm:px-4"
               onClick={() => onFloorChange(floor.id)}
               disabled={isLoading}
-              className={"flex-grow"}
             >
               {floor.label}
             </Button>
