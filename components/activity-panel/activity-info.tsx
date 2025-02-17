@@ -91,9 +91,9 @@ export function ActivityInfo({ activities, currentTime }: ActivityInfoProps) {
             <div className="flex items-center gap-1 text-yellow-800">
               <Clock className="w-4 h-4 flex-shrink-0" />
               <p className="text-sm">
-                Encore{" "}
+                Dans{" "}
                 <span className="font-semibold">
-                  {formatTimeDifference(nextActivity[0].end)}
+                  {formatTimeDifference(nextActivity[0].start)}
                 </span>
               </p>
             </div>
@@ -121,9 +121,9 @@ export function ActivityInfo({ activities, currentTime }: ActivityInfoProps) {
             <div className="flex items-center gap-1 text-green-800">
               <Clock className="w-4 h-4 flex-shrink-0" />
               <p className="text-sm">
-                Encore{" "}
+                Dans{" "}
                 <span className="font-semibold">
-                  {formatTimeDifference(nextActivity[0].end)}
+                  {formatTimeDifference(nextActivity[0].start)}
                 </span>
               </p>
             </div>
