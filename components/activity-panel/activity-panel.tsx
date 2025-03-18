@@ -3,8 +3,7 @@
 import { useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useToast } from "@/hooks/use-toast";
-import { ToastAction } from "@/components/ui/toast";
+import { toast } from "sonner";
 import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import type { Activity } from "@/models/Activity";
 import type { LocationInterface } from "@/types/LocationInterface";
@@ -39,7 +38,6 @@ export function ActivityPanel({
   onRoomClick,
   currentTime,
 }: ActivityPanelProps) {
-  const { toast } = useToast();
   const roomRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
@@ -53,15 +51,12 @@ export function ActivityPanel({
 
   if (error || isLoading) {
     if (error) {
-      toast({
-        variant: "destructive",
-        title: "Erreur",
+      toast.error("Erreur", {
         description: "Impossible de charger les activités.",
-        action: (
-          <ToastAction onClick={refresh} altText="Réessayer">
-            Réessayer
-          </ToastAction>
-        ),
+        action: {
+          label: "Réessayer",
+          onClick: () => refresh(),
+        },
       });
     }
     return <ActivityPanelSkeleton />;
