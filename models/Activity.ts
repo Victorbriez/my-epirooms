@@ -2,19 +2,17 @@ import { ActivityInterface } from "@/types/ActivityInterface";
 
 export class Activity {
   readonly id: number;
-  readonly end: Date;
   readonly start: Date;
+  readonly end: Date;
   readonly title: string;
   readonly roomCode: string;
-  readonly seats?: number;
 
   constructor(props: ActivityInterface) {
-    this.id = props.id;
-    this.end = new Date(props.end);
-    this.start = new Date(props.start);
-    this.title = props.acti_title ?? props.title ?? "N/A";
-    this.roomCode = props.room?.code ?? props.location ?? "N/A";
-    this.seats = props.room?.seats;
+    this.id = props.event_id;
+    this.start = new Date(props.start * 1000);
+    this.end = new Date(props.end * 1000);
+    this.title = props.title ?? "N/A";
+    this.roomCode = props.room ?? "N/A";
   }
 
   getDurationInMinutes(): number {
