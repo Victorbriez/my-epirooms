@@ -90,9 +90,7 @@ function getFloorActivity(
     const events = activities.filter(
       (activity) => activity.roomCode === room.key
     );
-    const currentActivity = events.find(
-      (e) => currentTime >= e.start && currentTime < e.end
-    );
+    const currentActivity = events.find((e) => e.isOngoing(currentTime));
     const nextActivity = events
       .filter((e) => e.start > currentTime)
       .sort((a, b) => a.start.getTime() - b.start.getTime());
