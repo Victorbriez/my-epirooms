@@ -5,10 +5,10 @@ export function Header({ currentTime }: { currentTime: Date }) {
     <div className="flex justify-between items-center">
       <div className="flex flex-col items-start">
         <div className="text-2xl font-bold text-foreground">
-          {currentTime.toLocaleTimeString("fr-FR")}
+          {currentTime.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Paris" })}
         </div>
         <div className="text-sm text-muted-foreground">
-          {currentTime.toLocaleDateString("fr-FR")}
+          {currentTime.toLocaleDateString("fr-FR", { timeZone: "Europe/Paris" })}
         </div>
       </div>
       <h1 className="text-3xl font-semibold">My-EpiRooms</h1>

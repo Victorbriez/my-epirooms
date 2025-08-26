@@ -29,6 +29,7 @@ export function DailyActivities({ activities }: DailyActivitiesProps) {
                     {activity.start.toLocaleTimeString("fr-FR", {
                       hour: "2-digit",
                       minute: "2-digit",
+                      timeZone: "Europe/Paris",
                     })}
                   </time>{" "}
                   -{" "}
@@ -39,6 +40,7 @@ export function DailyActivities({ activities }: DailyActivitiesProps) {
                     {activity.end.toLocaleTimeString("fr-FR", {
                       hour: "2-digit",
                       minute: "2-digit",
+                      timeZone: "Europe/Paris",
                     })}
                   </time>
                 </span>
